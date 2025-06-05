@@ -1,35 +1,60 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { supabase } from "../utils/supabase";
+import { useAuth } from "../context/AuthContext";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
+
+  // Helper for showing alerts
+  const showAlert = (title, message) => Alert.alert(title, message);
+
+  // Helper for fetching user by email
+  const fetchUserByEmail = async (fields = "id, name, email") => {
+    const { data, error } = await supabase
+      .from("users")
+      .select(fields)
+      .eq("email", email)
+      .single();
+    return { data, error };
+  };
 
   const handleLogin = async () => {
+    // Check if user exists
+    const { data: userExists } = await fetchUserByEmail("id");
+    if (!userExists) {
+      showAlert("Login failed", "User not found");
+      return;
+    }
+
+    // Try to sign in
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    if (error) {
-      Alert.alert("Login failed", error.message);
-    } else {
-      const user = data.user;
-      if (user) {
-        const { data: existing, error: selectError } = await supabase
-          .from("users")
-          .select("id")
-          .eq("id", user.id)
-          .single();
 
-        if (!existing) {
-          await supabase
-            .from("users")
-            .insert([{ id: user.id, email: user.email }]);
-        }
+    if (error) {
+      const msg = error.message?.toLowerCase() || "";
+      if (
+        msg.includes("invalid login credentials") ||
+        msg.includes("missing email or phone")
+      ) {
+        showAlert("Login failed", "Wrong password");
+      } else {
+        showAlert("Login failed", error.message);
       }
-      navigation.replace("Main");
+      return;
     }
+
+    // Fetch full user data and set in context
+    const { data: userData } = await fetchUserByEmail("id, name, email");
+    if (userData) {
+      login(userData);
+    }
+
+    navigation.replace("Main");
   };
 
   return (

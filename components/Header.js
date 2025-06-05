@@ -10,12 +10,14 @@ const Header = ({
   showNotification,
   showSettings,
   showProfile,
+  showLogout,
   onBackPress,
   onSavePress,
   onSearchPress,
   onNotificationPress,
   onSettingsPress,
   onProfilePress,
+  onLogoutPress,
 }) => {
   const navigation = useNavigation();
 
@@ -54,6 +56,11 @@ const Header = ({
             {showSettings && (
               <TouchableOpacity onPress={onSettingsPress} className="mr-2">
                 <Icon name="cog-outline" size={24} color="#fff" />
+              </TouchableOpacity>
+            )}
+            {showLogout && (
+              <TouchableOpacity onPress={onLogoutPress} className="mr-2">
+                <Icon name="logout" size={24} color="#fff" />
               </TouchableOpacity>
             )}
             {showProfile && (

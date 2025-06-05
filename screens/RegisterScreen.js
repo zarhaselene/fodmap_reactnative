@@ -1,36 +1,60 @@
 import { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { supabase } from "../utils/supabase";
+import { useAuth } from "../context/AuthContext";
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [name, setName] = useState("");
+  const { login } = useAuth();
 
+  // Helper for showing alerts
+  const showAlert = (title, message) => Alert.alert(title, message);
+
+  // Helper for fetching user by email
+  const fetchUserByEmail = async (fields = "id, name, email") => {
+    const { data, error } = await supabase
+      .from("users")
+      .select(fields)
+      .eq("email", email)
+      .single();
+    return { data, error };
+  };
+  
   const handleRegister = async () => {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
     if (error) {
-      Alert.alert("Registration failed", error.message);
-    } else {
-      const user = data.user;
-      if (user) {
-        const { data: existing, error: selectError } = await supabase
-          .from("users")
-          .select("id")
-          .eq("id", user.id)
-          .single();
-
-        if (!existing) {
-          await supabase
-            .from("users")
-            .insert([{ id: user.id, email: user.email, full_name: fullName }]);
-        }
-      }
-      navigation.replace("Main");
+      showAlert("Registration failed", error.message);
+      return;
     }
+
+    const user = data.user;
+    if (user) {
+      // Insert into users table if not exists
+      const { data: existing } = await supabase
+        .from("users")
+        .select("id")
+        .eq("id", user.id)
+        .single();
+
+      if (!existing) {
+        await supabase
+          .from("users")
+          .insert([{ id: user.id, email: user.email, name: name }]);
+      }
+
+      // Fetch full user data and set in context
+      const { data: userData } = await fetchUserByEmail("id, name, email");
+      if (userData) {
+        login(userData);
+      }
+    }
+
+    navigation.replace("Main");
   };
 
   return (
@@ -39,9 +63,9 @@ export default function RegisterScreen({ navigation }) {
         <Text className="text-2xl font-bold mb-6 text-center">Register</Text>
         <TextInput
           className="border w-full mb-4 p-2 rounded"
-          placeholder="Full Name"
-          value={fullName}
-          onChangeText={setFullName}
+          placeholder="Name"
+          value={name}
+          onChangeText={setName}
         />
         <TextInput
           className="border w-full mb-4 p-2 rounded"
