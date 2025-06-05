@@ -1,0 +1,74 @@
+import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+
+const Header = ({
+  title,
+  showBack,
+  showSave,
+  showSearch,
+  showNotification,
+  showSettings,
+  showProfile,
+  onBackPress,
+  onSavePress,
+  onSearchPress,
+  onNotificationPress,
+  onSettingsPress,
+  onProfilePress,
+}) => {
+  const navigation = useNavigation();
+
+  return (
+    <SafeAreaView>
+      <View className="bg-teal-600 px-4 pt-4 pb-3">
+        <View className="flex-row items-center justify-between">
+          <View className="flex-row items-center flex-1">
+            {showBack ? (
+              <TouchableOpacity
+                onPress={onBackPress || (() => navigation.goBack())}
+                className="mr-2"
+              >
+                <Icon name="arrow-left" size={24} color="#fff" />
+              </TouchableOpacity>
+            ) : null}
+            <View>
+              <Text className="text-white text-lg font-bold">{title}</Text>
+            </View>
+          </View>
+          <View className="flex-row items-center">
+            {showSave && (
+              <TouchableOpacity
+                onPress={onSavePress}
+                className="bg-teal-500 rounded-lg px-3 py-2 mr-2"
+              >
+                <Icon name="content-save-outline" size={22} color="#fff" />
+                {/* <Text className="text-white font-bold ml-1">Save</Text> */}
+              </TouchableOpacity>
+            )}
+            {showSearch && (
+              <TouchableOpacity onPress={onSearchPress} className="mr-2">
+                <Icon name="magnify" size={24} color="#fff" />
+              </TouchableOpacity>
+            )}
+            {showSettings && (
+              <TouchableOpacity onPress={onSettingsPress} className="mr-2">
+                <Icon name="cog-outline" size={24} color="#fff" />
+              </TouchableOpacity>
+            )}
+            {showProfile && (
+              <TouchableOpacity
+                onPress={onProfilePress}
+                className="bg-teal-500 rounded-full p-2"
+              >
+                <Icon name="account" size={24} color="#fff" />
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default Header;

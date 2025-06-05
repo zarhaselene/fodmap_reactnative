@@ -2,6 +2,7 @@
   "expo": {
     "name": "fodmap_reactnative",
     "slug": "fodmap_reactnative",
+    "owner": "zarhaselene",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,6 +14,7 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "bundleIdentifier": "com.tkupp.fodmap",
       "supportsTablet": true
     },
     "android": {
@@ -23,7 +25,16 @@
       "edgeToEdgeEnabled": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.125454702970-klp4q51j96fd8uqpd9gn5laf0hspiaha"
+        }
+      ]
+    ]
   }
 }
