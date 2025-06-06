@@ -110,7 +110,7 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <LinearGradient
-      colors={["#d1fae5", "#99f6e4"]}
+      colors={["#4FD1BF", "#1EA79E"]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={{ flex: 1 }}
@@ -128,10 +128,10 @@ export default function RegisterScreen({ navigation }) {
             <View className="flex-1 justify-center items-center px-6 py-8">
               {/* Head Section */}
               <View className="items-center mb-8">
-                <Text className="text-3xl font-bold text-emerald-700 tracking-wide">
+                <Text className="text-3xl font-bold text-white tracking-wide">
                   FODMAP
                 </Text>
-                <Text className="text-emerald-600 text-sm font-medium ">
+                <Text className="text-white text-sm font-medium ">
                   Friendly Food Finder
                 </Text>
               </View>
@@ -139,7 +139,7 @@ export default function RegisterScreen({ navigation }) {
               {/* Register Card */}
               <View className="w-full max-w-sm bg-white rounded-3xl shadow-md p-8 border border-gray-100">
                 <View className="items-center mb-6">
-                  <Text className="text-2xl font-bold text-gray-800 mb-2">
+                  <Text className="text-2xl font-bold text-[#1EA79E] mb-2">
                     Create Account
                   </Text>
                   <Text className="text-base text-gray-500 text-center leading-5">
@@ -205,7 +205,7 @@ export default function RegisterScreen({ navigation }) {
                 {/* Register Button */}
                 <TouchableOpacity
                   className={`py-4 rounded-xl mb-4 shadow-lg ${
-                    loading ? "bg-gray-400" : "bg-emerald-500"
+                    loading ? "bg-[#4FD1BF]" : "bg-[#1EA79E]"
                   }`}
                   onPress={handleRegister}
                   disabled={loading}
@@ -226,10 +226,10 @@ export default function RegisterScreen({ navigation }) {
 
                 {/* Login Link */}
                 <TouchableOpacity
-                  className="border-2 border-emerald-500 py-3 rounded-xl"
+                  className="border-2 border-[#1EA79E] py-3 rounded-xl"
                   onPress={() => navigation.navigate("Login")}
                 >
-                  <Text className="text-emerald-600 text-center font-semibold text-base">
+                  <Text className="text-[#1EA79E] text-center font-semibold text-base">
                     Sign In to Existing Account
                   </Text>
                 </TouchableOpacity>
