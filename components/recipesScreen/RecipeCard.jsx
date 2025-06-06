@@ -52,7 +52,7 @@ export default function RecipeCard({ recipe, isGridView }) {
 
           {/* FODMAP level grid view */}
           {isGridView && (
-            <Text className='absolute bottom-2 left-2 bg-green-500 text-green-50 px-2 py-1 rounded-lg  h-7 font-semibold'>
+            <Text className='absolute bottom-2 left-2 bg-green-500 text-green-50 px-2 py-1 rounded-lg font-semibold'>
               {recipe.level}
             </Text>
           )}
@@ -73,7 +73,9 @@ export default function RecipeCard({ recipe, isGridView }) {
             </View>
             {/* FODMAP level list view */}
             {!isGridView && (
-              <Text className='bg-green-500 text-green-50 px-2 py-1 rounded-lg  h-7 font-semibold'>{recipe.level}</Text>
+              <View>
+                <Text className='bg-green-500 text-green-50 px-2 py-1 rounded-lg font-semibold'>{recipe.level}</Text>
+              </View>
             )}
           </View>
           <View className='flex-row justify-between'>
