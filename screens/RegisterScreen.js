@@ -21,7 +21,7 @@ export default function RegisterScreen({ navigation }) {
       .single();
     return { data, error };
   };
-  
+
   const handleRegister = async () => {
     const { data, error } = await supabase.auth.signUp({
       email,

@@ -1,14 +1,13 @@
 import { View, Text } from "react-native";
+import Header from "../components/Header";
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation }) {
   return (
     <View>
       <Header
-        title="Recipes"
+        title="Profile"
         showSettings
-        showProfile
-        onSettingsPress={""}
-        onProfilePress={""}
+        onSettingsPress={() => navigation.navigate("Settings")}
       />
       <View className="flex-1 justify-center items-center">
         <Text>Profile Screen</Text>
