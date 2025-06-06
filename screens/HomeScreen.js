@@ -1,5 +1,8 @@
-import { View, Text } from "react-native";
-import Header from "../components/Header";
+import { View, ScrollView } from "react-native";
+import Header from "../components/shared/Header";
+import WelcomeCard from "../components/home/WelcomeCard";
+import FeatureCards from "../components/home/FeatureCards";
+import FeaturedRecipes from "../components/home/FeaturedRecipes";
 import { useAuth } from "../context/AuthContext";
 
 export default function HomeScreen({ navigation }) {
@@ -14,10 +17,27 @@ export default function HomeScreen({ navigation }) {
   return (
     <View className="flex-1">
       <Header title="FODMAP Helper" showLogout onLogoutPress={handleLogout} />
-      <View className="flex-1 justify-center items-center">
-        <Text>Home Screen</Text>
-        <Text>Welcome, {user ? user.name : ""}!</Text>
-      </View>
+      <ScrollView
+        contentContainerStyle={{
+          alignItems: "center",
+          paddingTop: 24,
+          paddingBottom: 24,
+        }}
+        showsVerticalScrollIndicator={false}
+      >
+        <WelcomeCard />
+        <FeatureCards
+          onPressRecipes={() => navigation.navigate("Recipes")}
+          onPressFoods={() => navigation.navigate("Foods")}
+          onPressSymptoms={() => navigation.navigate("SymptomTracker")}
+        />
+        <FeaturedRecipes
+          onPressRecipe={(recipe) =>
+            navigation.navigate("RecipeDetail", { recipe })
+          }
+          onPressSeeAll={() => navigation.navigate("AllRecipes")}
+        />
+      </ScrollView>
     </View>
   );
 }

@@ -20,8 +20,8 @@ const Header = ({
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView>
-      <View className="bg-teal-600 px-4 pt-4 pb-3">
+    <View className="bg-teal-600 px-4 pt-4 pb-4">
+      <SafeAreaView>
         <View className="flex-row items-center justify-between">
           <View className="flex-row items-center flex-1">
             {showBack ? (
@@ -71,8 +71,8 @@ const Header = ({
             )}
           </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </View>
   );
 };
 
