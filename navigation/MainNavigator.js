@@ -68,7 +68,7 @@ function TabNavigator() {
       <Tab.Screen name="Recipes" component={RecipesScreen} />
       <Tab.Screen name="Foods" component={FoodsScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
-  </Tab.Navigator>
+    </Tab.Navigator>
   );
 }
 
