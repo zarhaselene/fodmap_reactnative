@@ -54,7 +54,7 @@ const WelcomeCard = () => {
   }, []);
 
   return (
-    <View>
+    <View className="w-full">
       <LinearGradient
         colors={["#4FD1BF", "#1EA79E"]}
         start={{ x: 0, y: 0 }}
