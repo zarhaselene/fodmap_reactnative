@@ -6,6 +6,7 @@ import { getRecipeTips } from '../../../services/getRecipeTips';
 import InfoTiles from './InfoTiles';
 import FodmapInformation from './FodmapInformation';
 import { getRecipeIngredients } from '../../../services/getRecipeIngredients';
+import IngredientsTab from './IngredientsTab';
 
 const RecipeDetails = forwardRef(({ recipe }, ref) => {
   const [activeTab, setActiveTab] = useState('ingredients');
@@ -43,13 +44,9 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
     }
   }, [recipe?.id]);
 
-  console.log(recipe);
-  console.log(recipeTips);
-  console.log(recipeIngredients);
-
   return (
     <ActionSheet gestureEnabled ref={ref}>
-      <ScrollView bounces={false} className='flex-col p-4 mb-32'>
+      <ScrollView bounces={false} className='flex-col p-4 max-h-[600px] mb-16'>
         <View className='gap-2'>
           {/* Recipe title  */}
           <Text className='text-3xl font-bold'>{recipe?.title}</Text>
@@ -60,8 +57,8 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
           {/* FODMAP information  */}
           <FodmapInformation recipeTips={recipeTips} />
           {/* Tab manu  */}
-          <View className='flex-row border-border border-b'>
-            <TouchableOpacity className='flex-1' onPress={() => setActiveTab('ingredients')}>
+          <View className='flex-row gap-12 border-border border-b mb-4'>
+            <TouchableOpacity onPress={() => setActiveTab('ingredients')}>
               <Text
                 className={`${
                   activeTab === 'ingredients' ? 'text-primary border-primary border-b ' : 'text-text-muted'
@@ -70,7 +67,7 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
                 Ingredients
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity className='flex-1' onPress={() => setActiveTab('instructions')}>
+            <TouchableOpacity onPress={() => setActiveTab('instructions')}>
               <Text
                 className={`${
                   activeTab === 'instructions' ? 'text-primary border-primary border-b ' : 'text-text-muted'
@@ -79,7 +76,7 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
                 Instructions
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity className='flex-1' onPress={() => setActiveTab('nutrition')}>
+            <TouchableOpacity onPress={() => setActiveTab('nutrition')}>
               <Text
                 className={`${
                   activeTab === 'nutrition' ? 'text-primary border-primary border-b ' : 'text-text-muted'
@@ -89,6 +86,7 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
               </Text>
             </TouchableOpacity>
           </View>
+          {activeTab === 'ingredients' && <IngredientsTab recipeIngredients={recipeIngredients} />}
         </View>
       </ScrollView>
     </ActionSheet>
