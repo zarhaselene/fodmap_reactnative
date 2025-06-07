@@ -1,5 +1,5 @@
 import { View, ScrollView } from "react-native";
-import Header from "../components/shared/Header";
+import Header from "../components/Header";
 import WelcomeCard from "../components/home/WelcomeCard";
 import FeatureCards from "../components/home/FeatureCards";
 import FeaturedRecipes from "../components/home/FeaturedRecipes";

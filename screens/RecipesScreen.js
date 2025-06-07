@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import Header from "../components/shared/Header";
+import Header from "../components/Header";
 
 export default function RecipesScreen({ navigation }) {
   return (
