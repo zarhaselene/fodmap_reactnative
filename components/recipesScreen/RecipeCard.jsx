@@ -1,35 +1,17 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Image } from 'react-native';
+import { useRef } from 'react';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import RecipeDetails from './recipeDetails/RecipeDetails';
+import StarRating from '../shared/StarRating';
 
 export default function RecipeCard({ recipe, isGridView }) {
+  const actionSheetRef = useRef(null);
+
   // Function to render stars based on rating
-  const renderStars = (rating) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-
-    // Add filled star
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<AntDesignIcon key={`full-${i}`} name='star' color={'gold'} size={14} />);
-    }
-
-    // Add half star if needed
-    if (hasHalfStar) {
-      stars.push(<AntDesignIcon key='half' name='star' color={'gold'} size={14} style={{ opacity: 0.5 }} />);
-    }
-
-    // Add empty stars to make total of 5
-    const remainingStars = 5 - Math.ceil(rating);
-    for (let i = 0; i < remainingStars; i++) {
-      stars.push(<AntDesignIcon key={`empty-${i}`} name='staro' size={14} style={{ opacity: 0.1 }} />);
-    }
-
-    return stars;
-  };
 
   function handlePress() {
-    console.log(recipe.title, 'pressed!');
+    actionSheetRef.current?.show();
   }
 
   return (
@@ -64,12 +46,7 @@ export default function RecipeCard({ recipe, isGridView }) {
               {/* Recipe Name  */}
               <Text className='text-lg font-semibold'>{recipe.title}</Text>
               {/* Star rating  */}
-              <View className='flex-row gap-1'>
-                <View className='flex-row'>{renderStars(recipe.rating)}</View>
-                <Text>
-                  {recipe.rating.toFixed(1)} ({recipe.reviews})
-                </Text>
-              </View>
+              <StarRating rating={recipe.rating} reviews={recipe.reviews} />
             </View>
             {/* FODMAP level list view */}
             {!isGridView && (
@@ -97,6 +74,7 @@ export default function RecipeCard({ recipe, isGridView }) {
           </View>
         </View>
       </View>
+      <RecipeDetails ref={actionSheetRef} recipe={recipe} />
     </TouchableOpacity>
   );
 }
