@@ -1,15 +1,28 @@
-import { View, TextInput } from "react-native";
-import AntDesignIcon from "react-native-vector-icons/AntDesign";
+import { View, TextInput, TouchableOpacity } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const SearchBar = ({ onChangeText }) => {
+const SearchBar = ({
+  search,
+  onSearchChange,
+  onFilterPress,
+  placeholder = "Search...",
+}) => {
   return (
-    <View className="bg-neutral-100 h-12 p-2 rounded-lg flex-row items-center gap-2 flex-1">
-      <AntDesignIcon name="search1" size={18} className="opacity-25" />
+    <View className="flex-row items-center bg-gray-50 rounded-lg px-3 py-2 mb-3 w-full">
+      <Ionicons name="search" size={20} color="#9CA3AF" />
       <TextInput
-        onChangeText={onChangeText}
-        className="h-full flex-1"
-        placeholder="Search recipes..."
+        className="flex-1 ml-3 text-gray-900"
+        placeholder={placeholder}
+        placeholderTextColor="#9CA3AF"
+        value={search}
+        onChangeText={onSearchChange}
       />
+      {onFilterPress && (
+        <TouchableOpacity onPress={onFilterPress} className="ml-2 p-1">
+          <Icon name="filter-outline" size={22} color="#14B8A6" />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
