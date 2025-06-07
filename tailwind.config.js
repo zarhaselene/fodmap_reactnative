@@ -49,13 +49,12 @@ module.exports = {
           high: "#ef4444",
         },
 
-        // Symptom severity (1-5 scale)
         symptom: {
-          1: "#10b981", // Very mild - green
-          2: "#84cc16", // Mild - lime
-          3: "#f59e0b", // Moderate - orange
-          4: "#f97316", // Severe - orange-red
-          5: "#ef4444", // Very severe - red
+          1: "#10b981", 
+          2: "#84cc16", 
+          3: "#f59e0b", 
+          4: "#f97316", 
+          5: "#ef4444", 
         },
 
         // Surface colors
