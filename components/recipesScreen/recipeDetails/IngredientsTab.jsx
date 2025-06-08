@@ -78,7 +78,7 @@ export default function IngredientsTab({ recipeIngredients, recipeId }) {
             >
               <View
                 className={`w-6 h-6 rounded-full border-2 items-center justify-center ${
-                  isChecked ? 'bg-green-500 border-green-500' : 'border-gray-300'
+                  isChecked ? 'bg-primary border-primary' : 'border-gray-300'
                 }`}
               >
                 {isChecked && <MaterialCommunityIcons name='check' size={16} color='white' />}

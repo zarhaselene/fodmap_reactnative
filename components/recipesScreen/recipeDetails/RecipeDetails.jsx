@@ -7,11 +7,15 @@ import InfoTiles from './InfoTiles';
 import FodmapInformation from './FodmapInformation';
 import { getRecipeIngredients } from '../../../services/getRecipeIngredients';
 import IngredientsTab from './IngredientsTab';
+import InstructionsTab from './InstructionsTab';
+import NutritionTab from './NutritionTab';
+import { getRecipeInstructions } from '../../../services/getRecipeInstructions';
 
 const RecipeDetails = forwardRef(({ recipe }, ref) => {
   const [activeTab, setActiveTab] = useState('ingredients');
   const [recipeTips, setRecipeTips] = useState([]);
   const [recipeIngredients, setRecipeIngredients] = useState([]);
+  const [recipeInstructions, setRecipeInstructions] = useState([]);
   const recipeTags = [recipe.level, ...recipe.dietary_needs];
 
   // Fetch recipe tips
@@ -42,6 +46,21 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
     }
     if (recipe?.id) {
       fetchRecipeIngredients();
+    }
+  }, [recipe?.id]);
+
+  // Fetch recipe instructions
+  useEffect(() => {
+    async function fetchRecipeInstructions() {
+      try {
+        const instruction = await getRecipeInstructions(recipe.id);
+        setRecipeInstructions(instruction);
+      } catch (error) {
+        console.error('Error fetching recipe instruction:', error);
+      }
+    }
+    if (recipe?.id) {
+      fetchRecipeInstructions();
     }
   }, [recipe?.id]);
 
@@ -92,8 +111,11 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
           {/* Ingredients tab  */}
           {activeTab === 'ingredients' && <IngredientsTab recipeIngredients={recipeIngredients} recipeId={recipe.id} />}
           {/* Instructions tab  */}
+          {activeTab === 'instructions' && (
+            <InstructionsTab recipeInstructions={recipeInstructions} recipeId={recipe.id} />
+          )}
           {/* Nutrition tab  */}
-
+          {activeTab === 'nutrition' && <NutritionTab recipeId={recipe.id} />}
           {/* Tags  */}
           <Text className='text-lg font-bold mt-4'>Tags</Text>
           <View className='flex-row flex-wrap gap-2'>
