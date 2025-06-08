@@ -17,9 +17,9 @@ export default function RecipeCard({ recipe, isGridView }) {
   return (
     <TouchableOpacity
       onPress={handlePress}
-      className={`${isGridView ? 'w-1/2' : 'w-full'} shadow-sm shadow-neutral-300`}
+      className={`${isGridView ? 'w-1/2' : 'w-full'} shadow-sm shadow-border-dark`}
     >
-      <View className={`${isGridView ? 'flex-col' : 'flex-row'} relative bg-white m-2 rounded-lg`}>
+      <View className={`${isGridView ? 'flex-col' : 'flex-row'} relative bg-surface-primary m-2 rounded-lg`}>
         {/* Recipe image  */}
         <View className={`${isGridView ? 'h-44' : 'w-1/3'}  `}>
           <Image
@@ -34,7 +34,7 @@ export default function RecipeCard({ recipe, isGridView }) {
 
           {/* FODMAP level grid view */}
           {isGridView && (
-            <Text className='absolute bottom-2 left-2 bg-green-500 text-green-50 px-2 py-1 rounded-lg font-semibold'>
+            <Text className='absolute bottom-2 left-2 bg-fodmap-low text-green-50 px-2 py-1 rounded-lg font-semibold'>
               {recipe.level}
             </Text>
           )}
@@ -51,7 +51,7 @@ export default function RecipeCard({ recipe, isGridView }) {
             {/* FODMAP level list view */}
             {!isGridView && (
               <View>
-                <Text className='bg-green-500 text-green-50 px-2 py-1 rounded-lg font-semibold'>{recipe.level}</Text>
+                <Text className='bg-fodmap-low text-green-50 px-2 py-1 rounded-lg font-semibold'>{recipe.level}</Text>
               </View>
             )}
           </View>

@@ -115,13 +115,13 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
             <InstructionsTab recipeInstructions={recipeInstructions} recipeId={recipe.id} />
           )}
           {/* Nutrition tab  */}
-          {activeTab === 'nutrition' && <NutritionTab recipeId={recipe.id} />}
+          {activeTab === 'nutrition' && <NutritionTab recipe={recipe} recipeId={recipe.id} />}
           {/* Tags  */}
           <Text className='text-lg font-bold mt-4'>Tags</Text>
           <View className='flex-row flex-wrap gap-2'>
             {recipeTags.map((tag, index) => (
-              <View key={index} className='bg-neutral-100 px-3 py-2 rounded-full'>
-                <Text>{tag}</Text>
+              <View key={index} className='bg-surface-tertiary px-3 py-2 rounded-full'>
+                <Text className='text-text-secondary'>{tag}</Text>
               </View>
             ))}
           </View>

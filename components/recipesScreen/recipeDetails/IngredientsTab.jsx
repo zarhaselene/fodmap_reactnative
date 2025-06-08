@@ -56,14 +56,14 @@ export default function IngredientsTab({ recipeIngredients, recipeId }) {
   return (
     <View>
       {/* Heading and unit toggle button  */}
-      <View className='flex-row items-center justify-between mb-4'>
+      <View className='flex-row  justify-between mb-4'>
         <Text className='text-xl font-semibold'>Ingredients</Text>
         <TouchableOpacity
           onPress={handleUnitSystemToggle}
-          className='gap-1 flex-row items-center bg-neutral-100 px-3 py-2 rounded-sm'
+          className='gap-1 flex-row items-center bg-surface-tertiary px-3 py-2 rounded-sm'
         >
           <MaterialCommunityIcons name='web' size={18} color={'#525252'} />
-          <Text className='text-neutral-600'>{useMetric ? 'Imperial' : 'Metric'}</Text>
+          <Text className='text-text-secondary'>{useMetric ? 'Imperial' : 'Metric'}</Text>
         </TouchableOpacity>
       </View>
       {/* Ingredients list  */}
@@ -78,7 +78,7 @@ export default function IngredientsTab({ recipeIngredients, recipeId }) {
             >
               <View
                 className={`w-6 h-6 rounded-full border-2 items-center justify-center ${
-                  isChecked ? 'bg-primary border-primary' : 'border-gray-300'
+                  isChecked ? 'bg-primary border-primary' : 'border-border-dark'
                 }`}
               >
                 {isChecked && <MaterialCommunityIcons name='check' size={16} color='white' />}

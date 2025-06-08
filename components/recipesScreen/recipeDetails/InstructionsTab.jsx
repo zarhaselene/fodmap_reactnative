@@ -52,12 +52,12 @@ export default function InstructionsTab({ recipeInstructions, recipeId }) {
       {sortedInstructions.length > 0 && (
         <View className=' mb-6'>
           <View className='flex-row justify-between items-center mb-2'>
-            <Text className='font-medium text-neutral-700'>Progress</Text>
-            <Text className='text-neutral-600'>
+            <Text className='font-medium text-text-secondary'>Progress</Text>
+            <Text className='text-text-secondary'>
               {Math.round((checkedSteps.size / sortedInstructions.length) * 100)}%
             </Text>
           </View>
-          <View className='h-2 bg-neutral-200 rounded-full'>
+          <View className='h-2 bg-surface-tertiary rounded-full'>
             <View
               className='h-2 bg-primary rounded-full'
               style={{
@@ -69,9 +69,8 @@ export default function InstructionsTab({ recipeInstructions, recipeId }) {
       )}
 
       {/* Heading */}
-      <View className='flex-row items-center justify-between mb-4'>
-        <Text className='text-xl font-semibold'>Instructions</Text>
-      </View>
+
+      <Text className='text-xl font-semibold mb-4'>Instructions</Text>
 
       {/* Instructions list */}
       <View className='gap-4'>
@@ -85,7 +84,7 @@ export default function InstructionsTab({ recipeInstructions, recipeId }) {
             >
               <View
                 className={`w-6 h-6 rounded-full border-2 items-center justify-center mt-1 ${
-                  isChecked ? 'bg-primary border-primary' : 'border-gray-300'
+                  isChecked ? 'bg-primary border-primary' : 'border-border-dark'
                 }`}
               >
                 {isChecked && <MaterialCommunityIcons name='check' size={16} color='white' />}
