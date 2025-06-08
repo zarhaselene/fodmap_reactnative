@@ -1,13 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function IngredientsTab({ recipeIngredients }) {
+export default function IngredientsTab({ recipeIngredients, recipeId }) {
   const [useMetric, setUseMetric] = useState(true);
   const [checkedIngredients, setCheckedIngredients] = useState(new Set());
 
-  function handleUnitSystemToggle() {
-    setUseMetric((prev) => !prev);
+  // Load checked ingredients on component mount
+  useEffect(() => {
+    loadCheckedIngredients();
+  }, [recipeId]);
+
+  async function loadCheckedIngredients() {
+    try {
+      const stored = await AsyncStorage.getItem(`checked_ingredients_${recipeId}`);
+      if (stored) {
+        setCheckedIngredients(new Set(JSON.parse(stored)));
+      }
+    } catch (error) {
+      console.error('Error loading checked ingredients:', error);
+    }
+  }
+
+  async function saveCheckedIngredients(newSet) {
+    try {
+      await AsyncStorage.setItem(`checked_ingredients_${recipeId}`, JSON.stringify(Array.from(newSet)));
+    } catch (error) {
+      console.error('Error saving checked ingredients:', error);
+    }
   }
 
   function handleIngredientToggle(orderIndex) {
@@ -18,8 +39,13 @@ export default function IngredientsTab({ recipeIngredients }) {
       } else {
         newSet.add(orderIndex);
       }
+      saveCheckedIngredients(newSet);
       return newSet;
     });
+  }
+
+  function handleUnitSystemToggle() {
+    setUseMetric((prev) => !prev);
   }
 
   // Filter ingredients by measurement system and sort by order_index
