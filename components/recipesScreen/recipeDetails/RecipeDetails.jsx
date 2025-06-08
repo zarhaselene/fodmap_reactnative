@@ -12,6 +12,7 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
   const [activeTab, setActiveTab] = useState('ingredients');
   const [recipeTips, setRecipeTips] = useState([]);
   const [recipeIngredients, setRecipeIngredients] = useState([]);
+  const recipeTags = [recipe.level, ...recipe.dietary_needs];
 
   // Fetch recipe tips
   useEffect(() => {
@@ -43,6 +44,8 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
       fetchRecipeIngredients();
     }
   }, [recipe?.id]);
+
+  console.log(recipe);
 
   return (
     <ActionSheet gestureEnabled ref={ref}>
@@ -86,7 +89,20 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
               </Text>
             </TouchableOpacity>
           </View>
+          {/* Ingredients tab  */}
           {activeTab === 'ingredients' && <IngredientsTab recipeIngredients={recipeIngredients} />}
+          {/* Instructions tab  */}
+          {/* Nutrition tab  */}
+
+          {/* Tags  */}
+          <Text className='text-lg font-bold mt-4'>Tags</Text>
+          <View className='flex-row flex-wrap gap-2'>
+            {recipeTags.map((tag, index) => (
+              <View key={index} className='bg-neutral-100 px-3 py-2 rounded-full'>
+                <Text>{tag}</Text>
+              </View>
+            ))}
+          </View>
         </View>
       </ScrollView>
     </ActionSheet>
