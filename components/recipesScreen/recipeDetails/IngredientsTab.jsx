@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function IngredientsTab({ recipeIngredients, recipeId }) {
+export default function IngredientsTab({ recipe, recipeIngredients, recipeId }) {
   const [useMetric, setUseMetric] = useState(true);
   const [checkedIngredients, setCheckedIngredients] = useState(new Set());
 
@@ -48,6 +48,14 @@ export default function IngredientsTab({ recipeIngredients, recipeId }) {
     setUseMetric((prev) => !prev);
   }
 
+  function handleSizeDecrease() {
+    console.log('Decrease pressed!');
+  }
+
+  function handleSizeIncrease() {
+    console.log('Increase pressed!');
+  }
+
   // Filter ingredients by measurement system and sort by order_index
   const filteredIngredients = recipeIngredients
     .filter((ingredient) => ingredient.measurement_system === (useMetric ? 'eu' : 'us'))
@@ -55,9 +63,25 @@ export default function IngredientsTab({ recipeIngredients, recipeId }) {
 
   return (
     <View>
-      {/* Heading and unit toggle button  */}
-      <View className='flex-row  justify-between mb-4'>
+      {/* Heading  */}
+      <View className='flex-row  justify-between mb-2'>
         <Text className='text-xl font-semibold'>Ingredients</Text>
+      </View>
+      {/* Serving size and unit buttons  */}
+      <View className='mb-4 flex-row justify-between'>
+        <View className='flex-row bg-surface-tertiary items-center px-3 gap-1 rounded-sm'>
+          <TouchableOpacity onPress={handleSizeDecrease} className='p-1'>
+            <Text className='text-primary'>
+              <MaterialCommunityIcons name='minus' size={16} />
+            </Text>
+          </TouchableOpacity>
+          <Text className='font-medium'>{recipe.servings}</Text>
+          <TouchableOpacity onPress={handleSizeIncrease} className='p-1'>
+            <Text className='text-primary'>
+              <MaterialCommunityIcons name='plus' size={16} />
+            </Text>
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
           onPress={handleUnitSystemToggle}
           className='gap-1 flex-row items-center bg-surface-tertiary px-3 py-2 rounded-sm'

@@ -109,7 +109,9 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
             </TouchableOpacity>
           </View>
           {/* Ingredients tab  */}
-          {activeTab === 'ingredients' && <IngredientsTab recipeIngredients={recipeIngredients} recipeId={recipe.id} />}
+          {activeTab === 'ingredients' && (
+            <IngredientsTab recipe={recipe} recipeIngredients={recipeIngredients} recipeId={recipe.id} />
+          )}
           {/* Instructions tab  */}
           {activeTab === 'instructions' && (
             <InstructionsTab recipeInstructions={recipeInstructions} recipeId={recipe.id} />
