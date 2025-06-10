@@ -7,6 +7,8 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import HomeScreen from "../screens/HomeScreen";
 import RecipesScreen from "../screens/RecipesScreen";
 import FoodsScreen from "../screens/FoodsScreen";
+import TrackerScreen from "../screens/TrackerScreen";
+
 import ProfileScreen from "../screens/ProfileScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
@@ -52,10 +54,10 @@ function TabNavigator() {
                 color={color}
               />
             );
-          } else if (route.name === "Profile") {
+          } else if (route.name === "Tracker") {
             return (
               <Ionicons
-                name={focused ? "person" : "person-outline"}
+                name={focused ? "stats-chart" : "stats-chart"}
                 size={28}
                 color={color}
               />
@@ -67,7 +69,7 @@ function TabNavigator() {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Recipes" component={RecipesScreen} />
       <Tab.Screen name="Foods" component={FoodsScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Tracker" component={TrackerScreen} />
     </Tab.Navigator>
   );
 }

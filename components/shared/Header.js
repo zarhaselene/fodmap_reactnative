@@ -37,15 +37,6 @@ const Header = ({
             </View>
           </View>
           <View className="flex-row items-center">
-            {showSave && (
-              <TouchableOpacity
-                onPress={onSavePress}
-                className="bg-teal-500 rounded-lg px-3 py-2 mr-2"
-              >
-                <Icon name="content-save-outline" size={22} color="#fff" />
-                {/* <Text className="text-white font-bold ml-1">Save</Text> */}
-              </TouchableOpacity>
-            )}
             {showSearch && (
               <TouchableOpacity onPress={onSearchPress} className="mr-2">
                 <Icon name="magnify" size={24} color="#fff" />
