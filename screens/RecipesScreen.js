@@ -6,7 +6,7 @@ import { supabase } from "../utils/supabase";
 import SearchBar from "../components/shared/SearchBar";
 import FilterModal from "../components/shared/FilterModal";
 import ToggleGridButton from "../components/shared/ToggleGridButton";
-import RecipesList from "../components/recipes/RecipesList";
+import RecipesList from "../components/recipesScreen/RecipesList";
 import EmptyState from "../components/shared/EmptyState";
 
 // Define your filter options
@@ -151,9 +151,12 @@ export default function RecipesScreen() {
               ]}
             />
           </View>
-          <View className='flex-row items-center justify-between'>
+          <View className="flex-row items-center justify-between">
             <Text>{filteredRecipes.length} recipes found</Text>
-            <ToggleGridButton onPress={handleToggleGrid} isGridView={isGridView} />
+            <ToggleGridButton
+              onPress={handleToggleGrid}
+              isGridView={isGridView}
+            />
           </View>
         </View>
         <ScrollView>
@@ -178,9 +181,9 @@ function FilterButton({ onPress }) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className='h-12 w-12 rounded-lg border bg-neutral-100 border-neutral-300 justify-center items-center'
+      className="h-12 w-12 rounded-lg border bg-neutral-100 border-neutral-300 justify-center items-center"
     >
-      <AntDesignIcon name='filter' size={20} className='opacity-70' />
+      <AntDesignIcon name="filter" size={20} className="opacity-70" />
     </TouchableOpacity>
   );
 }
