@@ -1,9 +1,10 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text } from "react-native";
 import { useEffect, useState } from "react";
 import Header from "../components/shared/Header";
 import SearchBar from "../components/shared/SearchBar";
 import FilterModal from "../components/shared/FilterModal";
 import ToggleGridButton from "../components/shared/ToggleGridButton";
+import FodmapLegend from "../components/foods/FodmapLegend";
 import EmptyState from "../components/shared/EmptyState";
 
 import FoodsList from "../components/foods/FoodsList";
@@ -189,6 +190,7 @@ export default function FoodsScreen() {
               isGridView={isGridView}
             />
           </View>
+          <FodmapLegend />
         </View>
         <View style={{ flex: 1, width: "100%" }}>
           {loading ? (

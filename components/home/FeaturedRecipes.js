@@ -74,11 +74,7 @@ const FeaturedRecipes = ({ onPressRecipe, onPressSeeAll }) => {
               {/* Recipe Image */}
               <View className="relative">
                 <Image
-                  // source={
-                  //   recipe.image
-                  //     ? { uri: recipe.image }
-                  //     : require("../../assets/placeholder.png")
-                  // }
+                  source={{ uri: recipe.image }}
                   className="w-full h-32 rounded-t-xl bg-gray-200"
                   resizeMode="cover"
                 />

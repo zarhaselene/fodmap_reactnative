@@ -11,3 +11,31 @@ export async function getUserSavedRecipesCount(userId) {
   }
   return { count: count || 0, error: null };
 }
+
+// Get all saved recipe IDs for a user
+export async function getSavedRecipeIds(userId) {
+  const { data, error } = await supabase
+    .from("user_saved_recipes")
+    .select("recipe_id")
+    .eq("user_id", userId);
+  if (error) throw error;
+  return data.map((row) => row.recipe_id);
+}
+
+// Add a recipe to favorites
+export async function addFavorite(userId, recipeId) {
+  const { error } = await supabase
+    .from("user_saved_recipes")
+    .insert([{ user_id: userId, recipe_id: recipeId }]);
+  if (error) throw error;
+}
+
+// Remove a recipe from favorites
+export async function removeFavorite(userId, recipeId) {
+  const { error } = await supabase
+    .from("user_saved_recipes")
+    .delete()
+    .eq("user_id", userId)
+    .eq("recipe_id", recipeId);
+  if (error) throw error;
+}
