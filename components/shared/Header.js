@@ -5,13 +5,11 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 const Header = ({
   title,
   showBack,
-  showSave,
   showSearch,
   showSettings,
   showProfile,
   showLogout,
   onBackPress,
-  onSavePress,
   onSearchPress,
   onSettingsPress,
   onProfilePress,
