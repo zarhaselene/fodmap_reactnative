@@ -4,8 +4,10 @@ import { Ionicons } from "@expo/vector-icons";
 import Header from "../components/shared/Header";
 import { getUserData, updateUserData } from "../services/getUserData";
 import { getUserSavedRecipesCount } from "../services/getUserSavedRecipesData";
+import { useAuth } from "../context/AuthContext";
 
 import { supabase } from "../utils/supabase";
+import DailyTrackerModal from "../components/trackerScreen/DailyTrackerModal";
 
 export default function ProfileScreen({ navigation }) {
   const [user, setUser] = useState(null);
@@ -13,6 +15,15 @@ export default function ProfileScreen({ navigation }) {
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [newName, setNewName] = useState("");
   const [savedRecipes, setNumberOfSavedRecipes] = useState(0);
+  const [trackerModalVisible, setTrackerModalVisible] = useState(false);
+
+  const { logout } = useAuth();
+
+  // Handle logout and navigation
+  const handleLogout = () => {
+    logout();
+    navigation.replace("Login");
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -101,8 +112,11 @@ export default function ProfileScreen({ navigation }) {
     <View className="flex-1 bg-surface-secondary">
       <Header
         title="Profile"
-        showSettings={true}
-        onSettingsPress={() => navigation.navigate("Settings")}
+        showBack
+        onBackPress={() => navigation.goBack()}
+        showProfile={false}
+        showLogout
+        onLogoutPress={handleLogout}
       />
 
       <View className="flex-1 px-4 mt-8">
@@ -170,7 +184,7 @@ export default function ProfileScreen({ navigation }) {
             iconName="add"
             title="Log Symptoms"
             subtitle="Track today's progress"
-            onPress={() => navigation.navigate("LogSymptoms")}
+            onPress={() => setTrackerModalVisible(true)}
             iconBg="bg-purple-100"
             iconColor="#8b5cf6"
           />
@@ -207,6 +221,13 @@ export default function ProfileScreen({ navigation }) {
           />
         </View>
       </View>
+
+      {/* DailyTrackerModal */}
+      <DailyTrackerModal
+        visible={trackerModalVisible}
+        onClose={() => setTrackerModalVisible(false)}
+        userId={user?.id}
+      />
     </View>
   );
 }

@@ -8,13 +8,56 @@ import HomeScreen from "../screens/HomeScreen";
 import RecipesScreen from "../screens/RecipesScreen";
 import FoodsScreen from "../screens/FoodsScreen";
 import TrackerScreen from "../screens/TrackerScreen";
-
 import ProfileScreen from "../screens/ProfileScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 
-const Stack = createNativeStackNavigator();
+const HomeStack = createNativeStackNavigator();
+const RecipesStack = createNativeStackNavigator();
+const FoodsStack = createNativeStackNavigator();
+const TrackerStack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+// Home stack
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStack.Screen name="HomeMain" component={HomeScreen} />
+      <HomeStack.Screen name="Profile" component={ProfileScreen} />
+    </HomeStack.Navigator>
+  );
+}
+
+// Recipes stack
+function RecipesStackScreen() {
+  return (
+    <RecipesStack.Navigator screenOptions={{ headerShown: false }}>
+      <RecipesStack.Screen name="RecipesMain" component={RecipesScreen} />
+      <RecipesStack.Screen name="Profile" component={ProfileScreen} />
+    </RecipesStack.Navigator>
+  );
+}
+
+// Foods stack
+function FoodsStackScreen() {
+  return (
+    <FoodsStack.Navigator screenOptions={{ headerShown: false }}>
+      <FoodsStack.Screen name="FoodsMain" component={FoodsScreen} />
+      <FoodsStack.Screen name="Profile" component={ProfileScreen} />
+    </FoodsStack.Navigator>
+  );
+}
+
+// Tracker stack
+function TrackerStackScreen() {
+  return (
+    <TrackerStack.Navigator screenOptions={{ headerShown: false }}>
+      <TrackerStack.Screen name="TrackerMain" component={TrackerScreen} />
+      <TrackerStack.Screen name="Profile" component={ProfileScreen} />
+    </TrackerStack.Navigator>
+  );
+}
 
 function TabNavigator() {
   return (
@@ -66,10 +109,10 @@ function TabNavigator() {
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Recipes" component={RecipesScreen} />
-      <Tab.Screen name="Foods" component={FoodsScreen} />
-      <Tab.Screen name="Tracker" component={TrackerScreen} />
+      <Tab.Screen name="Home" component={HomeStackScreen} />
+      <Tab.Screen name="Recipes" component={RecipesStackScreen} />
+      <Tab.Screen name="Foods" component={FoodsStackScreen} />
+      <Tab.Screen name="Tracker" component={TrackerStackScreen} />
     </Tab.Navigator>
   );
 }
@@ -77,11 +120,11 @@ function TabNavigator() {
 export default function MainNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Main" component={TabNavigator} />
-      </Stack.Navigator>
+      <RootStack.Navigator screenOptions={{ headerShown: false }}>
+        <RootStack.Screen name="Login" component={LoginScreen} />
+        <RootStack.Screen name="Register" component={RegisterScreen} />
+        <RootStack.Screen name="Main" component={TabNavigator} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }

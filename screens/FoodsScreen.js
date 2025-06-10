@@ -10,7 +10,7 @@ import EmptyState from "../components/shared/EmptyState";
 import FoodsList from "../components/foods/FoodsList";
 import { supabase } from "../utils/supabase";
 
-export default function FoodsScreen() {
+export default function FoodsScreen({ navigation }) {
   const [isGridView, setIsGridView] = useState(false);
   const [foods, setFoods] = useState([]);
   const [filteredFoods, setFilteredFoods] = useState([]);
@@ -145,7 +145,11 @@ export default function FoodsScreen() {
 
   return (
     <View className="flex-1">
-      <Header title="Foods" />
+      <Header
+        title="Foods"
+        showProfile
+        onProfilePress={() => navigation.navigate("Profile")}
+      />
       <View className="flex-1 items-center">
         <View className="bg-white p-4 w-full gap-8">
           <View className="flex-row items-center gap-4">

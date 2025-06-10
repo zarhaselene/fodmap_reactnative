@@ -20,6 +20,7 @@ const TrackerScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   // Handle logout and navigation
   const handleLogout = () => {
@@ -59,9 +60,20 @@ const TrackerScreen = ({ navigation }) => {
     fetchTrackerData();
   };
 
+  const handleAddEntry = () => {
+    setSelectedDate(null);
+    setModalVisible(true);
+  };
+
+  const handleEditEntry = (date) => {
+    setSelectedDate(date);
+    setModalVisible(true);
+  };
+
   const handleModalClose = () => {
     setModalVisible(false);
-    fetchTrackerData(); // Refresh data after modal closes
+    setSelectedDate(null);
+    fetchTrackerData();
   };
 
   const getMoodEmoji = (mood) => {
@@ -118,7 +130,13 @@ const TrackerScreen = ({ navigation }) => {
   if (!user?.id && !loading) {
     return (
       <View className="flex-1 bg-gray-50">
-        <Header title="Daily Tracker" showLogout onLogoutPress={handleLogout} />
+        <Header
+          title="Daily Tracker"
+          showLogout
+          onLogoutPress={handleLogout}
+          showProfile
+          onProfilePress={() => navigation.navigate("Profile")}
+        />
 
         <View className="flex-1 bg-gray-50 justify-center items-center">
           <Text className="text-gray-500">
@@ -131,7 +149,13 @@ const TrackerScreen = ({ navigation }) => {
 
   return (
     <View className="flex-1 bg-gray-50">
-      <Header title="Daily Tracker" showLogout onLogoutPress={handleLogout} />
+      <Header
+        title="Daily Tracker"
+        showLogout
+        onLogoutPress={handleLogout}
+        showProfile
+        onProfilePress={() => navigation.navigate("Profile")}
+      />
 
       <ScrollView
         className="flex-1"
@@ -218,9 +242,11 @@ const TrackerScreen = ({ navigation }) => {
             ) : (
               <View>
                 {recentEntries.slice(0, 5).map((entry) => (
-                  <View
+                  <TouchableOpacity
                     key={entry.id}
+                    onPress={() => handleEditEntry(entry.date)}
                     className="flex-row items-center p-4 border-b border-gray-50 last:border-b-0"
+                    activeOpacity={0.7}
                   >
                     <View className="flex-row items-center flex-1">
                       <Text className="text-2xl mr-3">
@@ -246,7 +272,14 @@ const TrackerScreen = ({ navigation }) => {
                         </Text>
                       </View>
                     </View>
-                  </View>
+                    {/* Edit icon */}
+                    <Ionicons
+                      name="create-outline"
+                      size={25}
+                      color="#14b8a6"
+                      style={{ marginLeft: 8 }}
+                    />
+                  </TouchableOpacity>
                 ))}
               </View>
             )}
@@ -257,7 +290,7 @@ const TrackerScreen = ({ navigation }) => {
       {/* Add Entry Button */}
       <View className="absolute bottom-6 right-6">
         <TouchableOpacity
-          onPress={() => setModalVisible(true)}
+          onPress={handleAddEntry}
           className="bg-teal-600 w-14 h-14 rounded-full items-center justify-center shadow-lg"
           activeOpacity={0.8}
         >
@@ -270,6 +303,7 @@ const TrackerScreen = ({ navigation }) => {
         visible={modalVisible}
         onClose={handleModalClose}
         userId={user?.id}
+        initialDate={selectedDate}
       />
     </View>
   );

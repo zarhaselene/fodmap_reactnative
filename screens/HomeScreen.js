@@ -3,6 +3,7 @@ import Header from "../components/shared/Header";
 import WelcomeCard from "../components/home/WelcomeCard";
 import FeatureCards from "../components/home/FeatureCards";
 import FeaturedRecipes from "../components/home/FeaturedRecipes";
+
 import { useAuth } from "../context/AuthContext";
 
 export default function HomeScreen({ navigation }) {
@@ -16,7 +17,13 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View className="flex-1">
-      <Header title="FODMAP Helper" showLogout onLogoutPress={handleLogout} />
+      <Header
+        title="FODMAP Helper"
+        showProfile
+        onProfilePress={() => navigation.navigate("Profile")}
+        showLogout
+        onLogoutPress={handleLogout}
+      />
       <ScrollView
         contentContainerStyle={{
           alignItems: "center",
@@ -29,7 +36,7 @@ export default function HomeScreen({ navigation }) {
         <FeatureCards
           onPressRecipes={() => navigation.navigate("Recipes")}
           onPressFoods={() => navigation.navigate("Foods")}
-          onPressSymptoms={() => navigation.navigate("SymptomTracker")}
+          onPressSymptoms={() => navigation.navigate("Tracker")}
         />
         <FeaturedRecipes
           onPressRecipe={(recipe) =>

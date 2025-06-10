@@ -23,7 +23,7 @@ const dietaryNeeds = [
   "Sugar-Free",
 ];
 
-export default function RecipesScreen() {
+export default function RecipesScreen({ navigation }) {
   const [isGridView, setIsGridView] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
@@ -121,7 +121,11 @@ export default function RecipesScreen() {
 
   return (
     <View className="flex-1">
-      <Header title="Recipes" />
+      <Header
+        title="Recipes"
+        showProfile
+        onProfilePress={() => navigation.navigate("Profile")}
+      />
       <View className="flex-1 items-center">
         <View className="bg-white p-4 w-full gap-8">
           <View className="flex-row items-center gap-4">

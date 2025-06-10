@@ -16,7 +16,7 @@ import {
   getTrackerEntryByDate,
 } from "../../services/trackerData";
 
-const DailyTrackerModal = ({ visible, onClose, userId }) => {
+const DailyTrackerModal = ({ visible, onClose, userId, initialDate }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedMood, setSelectedMood] = useState("");
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
@@ -75,16 +75,11 @@ const DailyTrackerModal = ({ visible, onClose, userId }) => {
 
   useEffect(() => {
     if (visible) {
-      if (!selectedDate) {
-        const today = new Date().toISOString().split("T")[0];
-        setSelectedDate(today);
-        checkExistingEntry(today);
-      } else {
-        checkExistingEntry(selectedDate);
-      }
+      const dateToUse = initialDate || new Date().toISOString().split("T")[0];
+      setSelectedDate(dateToUse);
+      checkExistingEntry(dateToUse);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, userId]);
+  }, [visible, userId, initialDate]);
 
   const resetForm = () => {
     setSelectedMood("");
