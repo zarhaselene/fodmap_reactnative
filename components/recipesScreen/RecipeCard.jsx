@@ -23,7 +23,7 @@ export default function RecipeCard({ recipe, isGridView }) {
         {/* Recipe image  */}
         <View className={`${isGridView ? 'h-44' : 'w-1/3'}  `}>
           <Image
-            className={`${isGridView ? 'h-44 rounded-t-lg' : 'h-32 rounded-tl-lg'} bg-gray-400 `}
+            className={`${isGridView ? 'h-44 rounded-t-lg' : 'flex-1 rounded-l-lg'} bg-gray-400 `}
             source={{ uri: recipe.image }}
           />
 
