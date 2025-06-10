@@ -152,7 +152,7 @@ export default function FoodsScreen() {
               search={search}
               onSearchChange={setSearch}
               onFilterPress={() => setShowFilters(true)}
-              placeholder="Search Foods..."
+              placeholder="Search foods..."
             />
             <FilterModal
               visible={showFilters}

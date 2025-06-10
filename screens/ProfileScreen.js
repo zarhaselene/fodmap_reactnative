@@ -12,7 +12,7 @@ export default function ProfileScreen({ navigation }) {
   const [name, setName] = useState("");
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [newName, setNewName] = useState("");
-  const [savedRe, setNumberOfSavedRecipes] = useState(0);
+  const [savedRecipes, setNumberOfSavedRecipes] = useState(0);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -128,13 +128,13 @@ export default function ProfileScreen({ navigation }) {
                   <View className="flex-row space-x-2">
                     <TouchableOpacity
                       onPress={handleSave}
-                      className="flex-1 px-3 py-2 bg-primary rounded-lg items-center"
+                      className="flex-1 px-3 py-2 bg-primary rounded-sm items-center"
                     >
                       <Text className="text-white font-semibold">Save</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() => setEditModalVisible(false)}
-                      className="flex-1 px-3 py-2 bg-border-light rounded-lg items-center"
+                      className="flex-1 px-3 py-2 bg-border-light rounded-sm items-center"
                     >
                       <Text className="text-text-muted font-semibold">
                         Cancel
@@ -184,7 +184,7 @@ export default function ProfileScreen({ navigation }) {
           <ActionItem
             iconName="heart"
             title="Saved Recipes"
-            subtitle={`${savedRe} recipes`}
+            subtitle={`${savedRecipes} recipes`}
             onPress={() => navigation.navigate("SavedRecipes")}
             iconBg="bg-gray-100"
             iconColor="#6b7280"
