@@ -18,6 +18,14 @@ const SearchBar = ({
         value={search}
         onChangeText={onSearchChange}
       />
+      {search?.length > 0 && (
+        <TouchableOpacity
+          onPress={() => onSearchChange("")}
+          className="ml-1 p-1"
+        >
+          <Ionicons name="close-circle" size={18} color="#9CA3AF" />
+        </TouchableOpacity>
+      )}
       {onFilterPress && (
         <TouchableOpacity onPress={onFilterPress} className="ml-2 p-1">
           <Icon name="filter-outline" size={22} color="#14B8A6" />
