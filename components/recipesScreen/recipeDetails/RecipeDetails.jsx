@@ -75,7 +75,7 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
         <View className='gap-2'>
           <View className='flex-row items-center justify-between'>
             {/* Recipe title  */}
-            <Text className='text-3xl font-bold'>{recipe.title}</Text>
+            <Text className='text-3xl font-bold pr-8'>{recipe.title}</Text>
           </View>
           {/* Star rating  */}
           <StarRating rating={recipe.rating} reviews={recipe.reviews} />
