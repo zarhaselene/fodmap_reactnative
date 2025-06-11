@@ -12,7 +12,7 @@ import NutritionTab from './NutritionTab';
 import { getRecipeInstructions } from '../../../services/getRecipeInstructions';
 import FavoriteButton from './FavoriteButton';
 
-const RecipeDetails = forwardRef(({ recipe }, ref) => {
+const RecipeDetails = forwardRef(({ recipe, onRecipeUnsaved }, ref) => {
   const [activeTab, setActiveTab] = useState('ingredients');
   const [recipeTips, setRecipeTips] = useState([]);
   const [recipeIngredients, setRecipeIngredients] = useState([]);
@@ -70,7 +70,7 @@ const RecipeDetails = forwardRef(({ recipe }, ref) => {
   return (
     <ActionSheet className='relative' gestureEnabled ref={ref}>
       {/* Favorite Button  */}
-      <FavoriteButton className='absolute top-4 right-4 z-10' recipeId={recipe.id} />
+      <FavoriteButton className='absolute top-4 right-4 z-10' recipeId={recipe.id} onRecipeUnsaved={onRecipeUnsaved} />
       <ScrollView bounces={false} className='flex-col p-4 max-h-[600px] mb-16'>
         <View className='gap-2'>
           <View className='flex-row items-center justify-between'>

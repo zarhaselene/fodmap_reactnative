@@ -4,15 +4,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import HomeScreen from "../screens/HomeScreen";
-import RecipesScreen from "../screens/RecipesScreen";
-import FoodsScreen from "../screens/FoodsScreen";
-import TrackerScreen from "../screens/TrackerScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import LoginScreen from "../screens/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen";
-import SettingsScreen from "../screens/SettingsScreen";
-import FODMAPResourcesScreen from "../screens/FODMAPResourcesScreen";
+import HomeScreen from '../screens/HomeScreen';
+import RecipesScreen from '../screens/RecipesScreen';
+import FoodsScreen from '../screens/FoodsScreen';
+import TrackerScreen from '../screens/TrackerScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import SavedRecipesScreen from '../screens/SavedRecipesScreen';
+// import FODMAPResourcesScreen from "../screens/FODMAPResourcesScreen";
 
 const HomeStack = createNativeStackNavigator();
 const RecipesStack = createNativeStackNavigator();
@@ -25,8 +26,8 @@ const Tab = createBottomTabNavigator();
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-      <HomeStack.Screen name="HomeMain" component={HomeScreen} />
-      <HomeStack.Screen name="Profile" component={ProfileScreen} />
+      <HomeStack.Screen name='HomeMain' component={HomeScreen} />
+      <HomeStack.Screen name='Profile' component={ProfileScreen} />
     </HomeStack.Navigator>
   );
 }
@@ -35,8 +36,8 @@ function HomeStackScreen() {
 function RecipesStackScreen() {
   return (
     <RecipesStack.Navigator screenOptions={{ headerShown: false }}>
-      <RecipesStack.Screen name="RecipesMain" component={RecipesScreen} />
-      <RecipesStack.Screen name="Profile" component={ProfileScreen} />
+      <RecipesStack.Screen name='RecipesMain' component={RecipesScreen} />
+      <RecipesStack.Screen name='Profile' component={ProfileScreen} />
     </RecipesStack.Navigator>
   );
 }
@@ -45,8 +46,8 @@ function RecipesStackScreen() {
 function FoodsStackScreen() {
   return (
     <FoodsStack.Navigator screenOptions={{ headerShown: false }}>
-      <FoodsStack.Screen name="FoodsMain" component={FoodsScreen} />
-      <FoodsStack.Screen name="Profile" component={ProfileScreen} />
+      <FoodsStack.Screen name='FoodsMain' component={FoodsScreen} />
+      <FoodsStack.Screen name='Profile' component={ProfileScreen} />
     </FoodsStack.Navigator>
   );
 }
@@ -55,8 +56,8 @@ function FoodsStackScreen() {
 function TrackerStackScreen() {
   return (
     <TrackerStack.Navigator screenOptions={{ headerShown: false }}>
-      <TrackerStack.Screen name="TrackerMain" component={TrackerScreen} />
-      <TrackerStack.Screen name="Profile" component={ProfileScreen} />
+      <TrackerStack.Screen name='TrackerMain' component={TrackerScreen} />
+      <TrackerStack.Screen name='Profile' component={ProfileScreen} />
     </TrackerStack.Navigator>
   );
 }
@@ -75,46 +76,22 @@ function TabNavigator() {
           height: 70,
         },
         tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === "Home") {
-            return (
-              <Ionicons
-                name={focused ? "home" : "home-outline"}
-                size={28}
-                color={color}
-              />
-            );
-          } else if (route.name === "Recipes") {
-            return (
-              <MaterialCommunityIcons
-                name={focused ? "chef-hat" : "chef-hat"}
-                size={28}
-                color={color}
-              />
-            );
-          } else if (route.name === "Foods") {
-            return (
-              <MaterialCommunityIcons
-                name={focused ? "database" : "database-outline"}
-                size={28}
-                color={color}
-              />
-            );
-          } else if (route.name === "Tracker") {
-            return (
-              <Ionicons
-                name={focused ? "stats-chart" : "stats-chart"}
-                size={28}
-                color={color}
-              />
-            );
+          if (route.name === 'Home') {
+            return <Ionicons name={focused ? 'home' : 'home-outline'} size={28} color={color} />;
+          } else if (route.name === 'Recipes') {
+            return <MaterialCommunityIcons name={focused ? 'chef-hat' : 'chef-hat'} size={28} color={color} />;
+          } else if (route.name === 'Foods') {
+            return <MaterialCommunityIcons name={focused ? 'database' : 'database-outline'} size={28} color={color} />;
+          } else if (route.name === 'Tracker') {
+            return <Ionicons name={focused ? 'stats-chart' : 'stats-chart'} size={28} color={color} />;
           }
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeStackScreen} />
-      <Tab.Screen name="Recipes" component={RecipesStackScreen} />
-      <Tab.Screen name="Foods" component={FoodsStackScreen} />
-      <Tab.Screen name="Tracker" component={TrackerStackScreen} />
+      <Tab.Screen name='Home' component={HomeStackScreen} />
+      <Tab.Screen name='Recipes' component={RecipesStackScreen} />
+      <Tab.Screen name='Foods' component={FoodsStackScreen} />
+      <Tab.Screen name='Tracker' component={TrackerStackScreen} />
     </Tab.Navigator>
   );
 }
@@ -123,11 +100,12 @@ export default function MainNavigator() {
   return (
     <NavigationContainer>
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        {/* <RootStack.Screen name="Login" component={LoginScreen} />
-        <RootStack.Screen name="Register" component={RegisterScreen} /> */}
-        <RootStack.Screen name="Main" component={TabNavigator} />
-        <RootStack.Screen name="Settings" component={SettingsScreen} />
-        <RootStack.Screen name="Resources" component={FODMAPResourcesScreen} />
+        <RootStack.Screen name='Login' component={LoginScreen} />
+        <RootStack.Screen name='Register' component={RegisterScreen} />
+        <RootStack.Screen name='Main' component={TabNavigator} />
+        <RootStack.Screen name='SavedRecipes' component={SavedRecipesScreen} />
+        <RootStack.Screen name='Settings' component={SettingsScreen} />
+        {/* <RootStack.Screen name="Resources" component={FODMAPResourcesScreen} /> */}
       </RootStack.Navigator>
     </NavigationContainer>
   );

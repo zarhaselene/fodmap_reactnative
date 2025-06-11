@@ -4,7 +4,7 @@ import { toggleFavorite, getSavedRecipeIds } from '../../../services/getUserSave
 import { useAuth } from '../../../context/AuthContext';
 import { useState, useEffect } from 'react';
 
-export default function FavoriteButton({ className, recipeId }) {
+export default function FavoriteButton({ className, recipeId, onRecipeUnsaved }) {
   const { user } = useAuth();
   const [isSaved, setIsSaved] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +33,11 @@ export default function FavoriteButton({ className, recipeId }) {
       const result = await toggleFavorite(user.id, recipeId);
       setIsSaved(result.isSaved);
       console.log(`Recipe ${result.action}:`, recipeId);
+
+      // If recipe was unsaved and we have a callback, call it
+      if (!result.isSaved && onRecipeUnsaved) {
+        onRecipeUnsaved(recipeId);
+      }
     } catch (error) {
       console.error('Error toggling favorite:', error);
     } finally {
