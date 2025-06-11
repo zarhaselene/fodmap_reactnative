@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, TextInput, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "../components/shared/Header";
+import SectionHeader from "../components/shared/SectionHeader";
 import { getUserData, updateUserData } from "../services/getUserData";
 import { getUserSavedRecipesCount } from "../services/getUserSavedRecipesData";
 import { useAuth } from "../context/AuthContext";
-
+import SettingsScreen from "./SettingsScreen";
 import { supabase } from "../utils/supabase";
 import DailyTrackerModal from "../components/trackerScreen/DailyTrackerModal";
 
@@ -177,9 +178,7 @@ export default function ProfileScreen({ navigation }) {
 
         {/* Quick Actions */}
         <View className="mb-8">
-          <Text className="text-lg font-semibold text-text-primary mb-3">
-            Quick Action
-          </Text>
+          <SectionHeader title="Quick Action" />
           <ActionItem
             iconName="add"
             title="Log Symptoms"
@@ -192,9 +191,7 @@ export default function ProfileScreen({ navigation }) {
 
         {/* Account */}
         <View className="mb-24">
-          <Text className="text-lg font-semibold text-text-primary mb-3">
-            Account
-          </Text>
+          <SectionHeader title="Account" />
           <ActionItem
             iconName="heart"
             title="Saved Recipes"
@@ -207,7 +204,7 @@ export default function ProfileScreen({ navigation }) {
             iconName="book"
             title="FODMAP Resources"
             subtitle="Guides & educational content"
-            onPress={() => navigation.navigate("Resources")}
+            onPress={() => navigation.getParent()?.navigate("Resources")}
             iconBg="bg-gray-100"
             iconColor="#6b7280"
           />
