@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import Header from '../components/shared/Header';
 import RecipesList from '../components/recipesScreen/RecipesList';
 import { useEffect, useState } from 'react';
@@ -68,11 +68,13 @@ const SavedRecipesScreen = () => {
   return (
     <View className='flex-1'>
       <Header showBack title={'Saved Recipes'} />
-      {savedRecipes.length === 0 ? (
-        <Text className='text-center mt-4'>No saved recipes yet</Text>
-      ) : (
-        <RecipesList recipes={savedRecipes} isGridView={false} onRecipeUnsaved={handleRecipeUnsaved} />
-      )}
+      <ScrollView className='mb-4'>
+        {savedRecipes.length === 0 ? (
+          <Text className='text-center mt-4'>No saved recipes yet</Text>
+        ) : (
+          <RecipesList recipes={savedRecipes} isGridView={false} onRecipeUnsaved={handleRecipeUnsaved} />
+        )}
+      </ScrollView>
     </View>
   );
 };
