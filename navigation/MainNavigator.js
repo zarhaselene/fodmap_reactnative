@@ -1,8 +1,8 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from "../screens/HomeScreen";
 import RecipesScreen from "../screens/RecipesScreen";
@@ -67,10 +67,10 @@ function TabNavigator() {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: true,
-        tabBarActiveTintColor: "#009688",
-        tabBarInactiveTintColor: "#90a4ae",
+        tabBarActiveTintColor: '#009688',
+        tabBarInactiveTintColor: '#90a4ae',
         tabBarStyle: {
-          backgroundColor: "#fff",
+          backgroundColor: '#fff',
           paddingVertical: 8,
           height: 70,
         },
