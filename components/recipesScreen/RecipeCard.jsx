@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import RecipeDetails from './recipeDetails/RecipeDetails';
 import StarRating from '../shared/StarRating';
+import FavoriteButton from './recipeDetails/FavoriteButton';
 
 export default function RecipeCard({ recipe, isGridView }) {
   const actionSheetRef = useRef(null);
@@ -26,12 +27,6 @@ export default function RecipeCard({ recipe, isGridView }) {
             className={`${isGridView ? 'h-44 rounded-t-lg' : 'flex-1 rounded-l-lg'} bg-gray-400 `}
             source={{ uri: recipe.image }}
           />
-
-          {/* Favorite heart  */}
-          <View className='p-1.5 items-center justify-center bg-white rounded-full absolute top-2 right-2'>
-            <AntDesignIcon name='heart' color={'#ef4444'} size={14} />
-          </View>
-
           {/* FODMAP level grid view */}
           {isGridView && (
             <Text className='absolute bottom-2 left-2 bg-fodmap-low text-green-50 px-2 py-1 rounded-lg font-semibold'>
