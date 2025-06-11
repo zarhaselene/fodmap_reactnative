@@ -1,8 +1,11 @@
-import { TouchableOpacity, Text } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { toggleFavorite, getSavedRecipeIds } from '../../../services/getUserSavedRecipesData';
-import { useAuth } from '../../../context/AuthContext';
-import { useState, useEffect } from 'react';
+import { TouchableOpacity, Text } from "react-native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import {
+  toggleFavorite,
+  getSavedRecipeIds,
+} from "../../../services/getUserSavedRecipesData";
+import { useAuth } from "../../../context/AuthContext";
+import { useState, useEffect } from "react";
 
 export default function FavoriteButton({ className, recipeId }) {
   const { user } = useAuth();
@@ -18,7 +21,7 @@ export default function FavoriteButton({ className, recipeId }) {
         const savedRecipeIds = await getSavedRecipeIds(user.id);
         setIsSaved(savedRecipeIds.includes(recipeId));
       } catch (error) {
-        console.error('Error checking if recipe is saved:', error);
+        console.error("Error checking if recipe is saved:", error);
       }
     }
 
@@ -34,7 +37,7 @@ export default function FavoriteButton({ className, recipeId }) {
       setIsSaved(result.isSaved);
       console.log(`Recipe ${result.action}:`, recipeId);
     } catch (error) {
-      console.error('Error toggling favorite:', error);
+      console.error("Error toggling favorite:", error);
     } finally {
       setIsLoading(false);
     }
@@ -43,11 +46,14 @@ export default function FavoriteButton({ className, recipeId }) {
   return (
     <TouchableOpacity
       onPress={handleToggleFavorite}
-      className={`${className} ` + 'bg-surface-tertiary p-2 rounded-full'}
+      className={`${className} ` + "bg-surface-tertiary p-2 rounded-full"}
       disabled={isLoading || !user}
     >
-      <Text className={isSaved ? 'text-red-600' : 'text-primary'}>
-        <MaterialCommunityIcons name={isSaved ? 'heart' : 'heart-outline'} size={20} />
+      <Text className={isSaved ? "text-red-600" : "text-brand-primary"}>
+        <MaterialCommunityIcons
+          name={isSaved ? "heart" : "heart-outline"}
+          size={20}
+        />
       </Text>
     </TouchableOpacity>
   );

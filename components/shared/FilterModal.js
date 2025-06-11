@@ -32,7 +32,7 @@ const FilterSection = ({
             size={22}
             color="#14B8A6"
           />
-          <Text className="ml-3 text-gray-700">{displayLabel}</Text>
+          <Text className="ml-3 text-text-secondary">{displayLabel}</Text>
         </TouchableOpacity>
       );
     })}
@@ -49,7 +49,7 @@ const FilterModal = ({ visible, onClose, onResetFilters, filterSections }) => {
     >
       <View className="absolute inset-0 bg-black/50" pointerEvents="auto" />
       <View className="flex-1 justify-center items-center">
-        <View className="bg-white rounded-2xl p-6 w-[90%] max-h-[80%] z-10">
+        <View className="bg-surface-primary rounded-2xl p-6 w-[90%] max-h-[80%] z-10">
           <TouchableOpacity
             onPress={onClose}
             className="absolute top-4 right-4 z-10 p-2 rounded-full bg-gray-100"
@@ -81,7 +81,7 @@ const FilterModal = ({ visible, onClose, onResetFilters, filterSections }) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={onClose}
-            className="mt-3 bg-primary rounded-lg py-3 items-center"
+            className="mt-3 bg-brand-primary rounded-lg py-3 items-center"
           >
             <Text className="text-white font-bold text-base">
               Apply Filters

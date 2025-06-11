@@ -151,7 +151,7 @@ export default function FoodsScreen({ navigation }) {
         onProfilePress={() => navigation.navigate("Profile")}
       />
       <View className="flex-1 items-center">
-        <View className="bg-white p-4 w-full gap-8">
+        <View className="bg-surface-primary p-4 w-full gap-8">
           <View className="flex-row items-center gap-4">
             <SearchBar
               search={search}

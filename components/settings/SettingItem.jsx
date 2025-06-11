@@ -10,7 +10,7 @@ export default function SettingItem({
   rightComponent,
   showChevron = true,
   iconColor = "#14b8a6",
-  iconBgColor = "bg-teal-100 dark:bg-teal-900/30",
+  iconBgColor = "bg-teal-100",
   showBorder = false,
 }) {
   const IconComponent =
@@ -21,7 +21,7 @@ export default function SettingItem({
   return (
     <TouchableOpacity
       className={`flex-row items-center justify-between py-5 px-3 ${
-        showBorder ? "border-b border-gray-100 dark:border-gray-700" : ""
+        showBorder ? "border-b border-border-light" : ""
       }`}
       onPress={onPress}
       disabled={!onPress}
@@ -34,11 +34,11 @@ export default function SettingItem({
           <IconComponent name={icon} size={24} color={iconColor} />
         </View>
         <View className="flex-1">
-          <Text className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+          <Text className="text-lg font-semibold text-gray-900 mb-1">
             {title}
           </Text>
           {subtitle && (
-            <Text className="text-sm text-gray-500 dark:text-gray-400">
+            <Text className="text-sm text-text-muted">
               {subtitle}
             </Text>
           )}
@@ -50,7 +50,6 @@ export default function SettingItem({
             name="chevron-forward"
             size={20}
             color="#9ca3af"
-            className="dark:text-gray-500"
           />
         ))}
     </TouchableOpacity>

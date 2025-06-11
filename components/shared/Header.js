@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  StatusBar,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -18,7 +24,8 @@ const Header = ({
   const navigation = useNavigation();
 
   return (
-    <View className="bg-teal-600 px-4 pt-4 pb-4">
+    <View className="bg-brand-primary px-4 pt-4 pb-4">
+      <StatusBar barStyle="light-content" />
       <SafeAreaView>
         <View className="flex-row items-center justify-between">
           <View className="flex-row items-center flex-1">

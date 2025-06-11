@@ -5,7 +5,7 @@ const LoadingSpinner = ({ message = "Loading..." }) => {
     <View className="flex-1 justify-center items-center">
       <ActivityIndicator size="large" color="#14B8A6" />
 
-      <Text className="mt-4 text-gray-500">{message}</Text>
+      <Text className="mt-4 text-text-muted">{message}</Text>
     </View>
   );
 };

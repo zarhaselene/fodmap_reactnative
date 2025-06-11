@@ -39,7 +39,7 @@ const FoodCard = ({
         activeOpacity={0.95}
       >
         <View
-          className="bg-white rounded-xl border border-gray-200 items-center py-4 px-2"
+          className="bg-surface-primary rounded-xl border border-border items-center py-4 px-2"
           style={{
             minHeight: 250,
             elevation: 1,
@@ -76,15 +76,15 @@ const FoodCard = ({
           {/* Category */}
           {food.category && (
             <Text
-              className="text-sm text-gray-400 mb-2 text-center"
+              className="text-sm text-text-gray mb-2 text-center"
               numberOfLines={1}
             >
               {food.category}
             </Text>
           )}
           {/* Safe serving */}
-          <View className="w-full bg-gray-50 rounded-lg py-3 px-2 my-2 items-center">
-            <Text className="text-gray-500 font-medium mb-1">
+          <View className="w-full bg-bg-secondary rounded-lg py-3 px-2 my-2 items-center">
+            <Text className="text-text-muted font-medium mb-1">
               Safe serving:
             </Text>
             <Text
@@ -96,7 +96,7 @@ const FoodCard = ({
           </View>
           {/* Serving size */}
           {food.serving_size && (
-            <Text className="text-xs text-gray-400 mb-2 italic text-center">
+            <Text className="text-xs text-text-gray mb-2 italic text-center">
               {food.serving_size}
             </Text>
           )}
@@ -106,10 +106,10 @@ const FoodCard = ({
               {/* FODMAP Types */}
               {food.fodmap_types && food.fodmap_types.length > 0 && (
                 <View className="mb-2">
-                  <Text className="font-semibold text-sm text-gray-700 mb-1">
+                  <Text className="font-semibold text-sm text-text-secondary mb-1">
                     FODMAP Types:
                   </Text>
-                  <Text className="text-sm text-gray-600">
+                  <Text className="text-sm text-text-darkGray">
                     {Array.isArray(food.fodmap_types)
                       ? food.fodmap_types.join(", ")
                       : food.fodmap_types}
@@ -120,10 +120,10 @@ const FoodCard = ({
               {/* Low FODMAP Alternatives */}
               {foodAlternatives.length > 0 && (
                 <View className="mb-2">
-                  <Text className="font-semibold text-sm text-gray-700 mb-1">
+                  <Text className="font-semibold text-sm text-text-secondary mb-1">
                     Low FODMAP Alternatives:
                   </Text>
-                  <Text className="text-sm text-gray-600">
+                  <Text className="text-sm text-text-darkGray">
                     {foodAlternatives.join(", ")}
                   </Text>
                 </View>
@@ -132,7 +132,7 @@ const FoodCard = ({
               {/* Dietary badges */}
               {dietaryOptions.filter((d) => food[d.key]).length > 0 && (
                 <View className="mb-1">
-                  <Text className="font-semibold text-sm text-gray-700 mb-1">
+                  <Text className="font-semibold text-sm text-text-secondary mb-1">
                     Dietary Info:
                   </Text>
                   <View className="flex-row flex-wrap gap-2 mt-2">
@@ -159,7 +159,7 @@ const FoodCard = ({
             activeOpacity={0.7}
           >
             <View className="flex-row items-center justify-center">
-              <Text className="text-xs text-gray-500 mr-1">
+              <Text className="text-xs text-text-muted mr-1">
                 {isExpanded ? "Collapse" : "Expand"}
               </Text>
               <Ionicons
@@ -179,7 +179,7 @@ const FoodCard = ({
   // List view
   return (
     <TouchableOpacity onPress={handlePress} className="w-full p-1">
-      <View className="bg-white rounded-lg border border-gray-200 p-4 m-1">
+      <View className="bg-surface-primary rounded-lg border border-border p-4 m-1">
         {/* Header with FODMAP badge */}
         <View className="flex-col justify-between items-start mb-4">
           <View className="flex-row items-baseline gap-2">
@@ -187,7 +187,7 @@ const FoodCard = ({
               {food.name}
             </Text>
             {food.category && (
-              <Text className="text-sm text-gray-500 capitalize">
+              <Text className="text-sm text-text-muted capitalize">
                 ({food.category})
               </Text>
             )}
@@ -208,9 +208,9 @@ const FoodCard = ({
         </View>
 
         {/* Safe serving section */}
-        <View className="border-t border-gray-100 pt-3">
+        <View className="border-t border-border-light pt-3">
           <View className="flex-row justify-between items-center">
-            <Text className="text-gray-600 font-medium">Safe serving</Text>
+            <Text className="text-text-darkGray font-medium">Safe serving</Text>
             <Text
               className="text-lg font-bold"
               style={{ color: fodmapColors.text }}
@@ -220,7 +220,7 @@ const FoodCard = ({
           </View>
 
           {food.serving_size && (
-            <Text className="text-xs text-gray-400 mt-1 text-right">
+            <Text className="text-xs text-text-gray mt-1 text-right">
               {food.serving_size}
             </Text>
           )}
@@ -228,14 +228,14 @@ const FoodCard = ({
 
         {/* Expandable details */}
         {isExpanded && (
-          <View className="border-t border-gray-100 pt-3 mt-3">
+          <View className="border-t border-border-light pt-3 mt-3">
             {/* FODMAP Types */}
             {food.fodmap_types && food.fodmap_types.length > 0 && (
               <View className="mb-3">
-                <Text className="font-semibold text-sm text-gray-700 mb-1">
+                <Text className="font-semibold text-sm text-text-secondary mb-1">
                   FODMAP Types:
                 </Text>
-                <Text className="text-sm text-gray-600">
+                <Text className="text-sm text-text-darkGray">
                   {Array.isArray(food.fodmap_types)
                     ? food.fodmap_types.join(", ")
                     : food.fodmap_types}
@@ -246,10 +246,10 @@ const FoodCard = ({
             {/* Low FODMAP Alternatives */}
             {foodAlternatives.length > 0 && (
               <View className="mb-3">
-                <Text className="font-semibold text-sm text-gray-700 mb-1">
+                <Text className="font-semibold text-sm text-text-secondary mb-1">
                   Low FODMAP Alternatives:
                 </Text>
-                <Text className="text-sm text-gray-600">
+                <Text className="text-sm text-text-darkGray">
                   {foodAlternatives.join(", ")}
                 </Text>
               </View>
@@ -258,7 +258,7 @@ const FoodCard = ({
             {/* Dietary badges */}
             {dietaryOptions.filter((d) => food[d.key]).length > 0 && (
               <View>
-                <Text className="font-semibold text-sm text-gray-700 mb-1">
+                <Text className="font-semibold text-sm text-text-secondary mb-1">
                   Dietary Info:
                 </Text>
                 <View className="flex-row flex-wrap gap-2 mt-2">
@@ -279,7 +279,7 @@ const FoodCard = ({
         )}
 
         {/* Expand/collapse indicator */}
-        <View className="items-center mt-3 pt-2 border-t border-gray-100">
+        <View className="items-center mt-3 pt-2 border-t border-border-light">
           <Ionicons
             name={isExpanded ? "chevron-up-outline" : "chevron-down-outline"}
             size={24}

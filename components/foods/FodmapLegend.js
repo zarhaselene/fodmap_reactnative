@@ -42,7 +42,7 @@ const FodmapLegend = () => {
           size={20}
           color="#6b7280"
         />
-        <Text className="text-xs text-gray-500 ml-1">
+        <Text className="text-xs text-text-muted ml-1">
           {expanded ? "Hide" : "Show"}
         </Text>
       </TouchableOpacity>

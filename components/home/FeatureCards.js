@@ -62,10 +62,10 @@ const FeatureCards = ({ onPressRecipes, onPressFoods, onPressSymptoms }) => {
 
             {/* Text Content */}
             <View className="flex-1">
-              <Text className="text-gray-800 text-lg font-semibold mb-1">
+              <Text className="text-text-primary text-lg font-semibold mb-1">
                 {feature.title}
               </Text>
-              <Text className="text-gray-600 text-base">
+              <Text className="text-text-darkGray text-base">
                 {feature.subtitle}
               </Text>
             </View>

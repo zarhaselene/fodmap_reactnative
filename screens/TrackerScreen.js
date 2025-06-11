@@ -118,7 +118,7 @@ const TrackerScreen = ({ navigation }) => {
 
   if (loading) {
     return (
-      <View className="flex-1 bg-gray-50">
+      <View className="flex-1 bg-bg-secondary">
         <Header title="Daily Tracker" />
         <View className="flex-1 justify-center items-center">
           <ActivityIndicator size="large" color="#14b8a6" />
@@ -129,7 +129,7 @@ const TrackerScreen = ({ navigation }) => {
 
   if (!user?.id && !loading) {
     return (
-      <View className="flex-1 bg-gray-50">
+      <View className="flex-1 bg-bg-secondary">
         <Header
           title="Daily Tracker"
           showLogout
@@ -138,8 +138,8 @@ const TrackerScreen = ({ navigation }) => {
           onProfilePress={() => navigation.navigate("Profile")}
         />
 
-        <View className="flex-1 bg-gray-50 justify-center items-center">
-          <Text className="text-gray-500">
+        <View className="flex-1 bg-bg-secondary justify-center items-center">
+          <Text className="text-text-muted">
             You must be logged in to use the tracker.
           </Text>
         </View>
@@ -148,7 +148,7 @@ const TrackerScreen = ({ navigation }) => {
   }
 
   return (
-    <View className="flex-1 bg-gray-50">
+    <View className="flex-1 bg-bg-secondary">
       <Header
         title="Daily Tracker"
         showLogout
@@ -167,28 +167,32 @@ const TrackerScreen = ({ navigation }) => {
         <View className="px-4 py-6">
           <View className="flex-row mb-6">
             <View className="flex-1 mr-2">
-              <View className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+              <View className="bg-surface-primary p-4 rounded-xl shadow-sm border border-border-light">
                 <View className="flex-row items-center mb-2">
                   <Ionicons name="happy-outline" size={20} color="#14b8a6" />
-                  <Text className="text-gray-600 text-sm ml-2">Avg Mood</Text>
+                  <Text className="text-text-darkGray text-sm ml-2">
+                    Avg Mood
+                  </Text>
                 </View>
-                <Text className="text-2xl font-bold text-gray-800">
+                <Text className="text-2xl font-bold text-text-primary">
                   {overview?.averageMood || "0.0"}
                 </Text>
-                <Text className="text-xs text-gray-500">Last 7 days</Text>
+                <Text className="text-xs text-text-muted">Last 7 days</Text>
               </View>
             </View>
 
             <View className="flex-1 ml-2">
-              <View className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+              <View className="bg-surface-primary p-4 rounded-xl shadow-sm border border-border-light">
                 <View className="flex-row items-center mb-2">
                   <Ionicons name="calendar-outline" size={20} color="#14b8a6" />
-                  <Text className="text-gray-600 text-sm ml-2">Entries</Text>
+                  <Text className="text-text-darkGray text-sm ml-2">
+                    Entries
+                  </Text>
                 </View>
-                <Text className="text-2xl font-bold text-gray-800">
+                <Text className="text-2xl font-bold text-text-primary">
                   {overview?.totalEntries || 0}
                 </Text>
-                <Text className="text-xs text-gray-500">Last 7 days</Text>
+                <Text className="text-xs text-text-muted">Last 7 days</Text>
               </View>
             </View>
           </View>
@@ -196,10 +200,10 @@ const TrackerScreen = ({ navigation }) => {
           {/* Common Symptoms */}
           {overview?.commonSymptoms &&
             Object.keys(overview.commonSymptoms).length > 0 && (
-              <View className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6">
+              <View className="bg-surface-primary p-4 rounded-xl shadow-sm border border-border-light mb-6">
                 <View className="flex-row items-center mb-3">
                   <Ionicons name="pulse-outline" size={20} color="#14b8a6" />
-                  <Text className="text-gray-800 text-lg font-semibold ml-2">
+                  <Text className="text-text-primary text-lg font-semibold ml-2">
                     Common Symptoms
                   </Text>
                 </View>
@@ -212,7 +216,7 @@ const TrackerScreen = ({ navigation }) => {
                         key={symptom}
                         className="bg-gray-100 px-3 py-1 rounded-full mr-2 mb-2"
                       >
-                        <Text className="text-gray-700 text-sm">
+                        <Text className="text-text-secondary text-sm">
                           {symptom} ({count})
                         </Text>
                       </View>
@@ -222,11 +226,11 @@ const TrackerScreen = ({ navigation }) => {
             )}
 
           {/* Recent Entries */}
-          <View className="bg-white rounded-xl shadow-sm border border-gray-100 mb-6">
-            <View className="flex-row items-center justify-between p-4 border-b border-gray-100">
+          <View className="bg-surface-primary rounded-xl shadow-sm border border-border-light mb-6">
+            <View className="flex-row items-center justify-between p-4 border-b border-border-light">
               <View className="flex-row items-center">
                 <Ionicons name="time-outline" size={20} color="#14b8a6" />
-                <Text className="text-gray-800 text-lg font-semibold ml-2">
+                <Text className="text-text-primary text-lg font-semibold ml-2">
                   Recent Entries
                 </Text>
               </View>
@@ -235,7 +239,7 @@ const TrackerScreen = ({ navigation }) => {
             {recentEntries.length === 0 ? (
               <View className="p-8 items-center">
                 <Ionicons name="document-outline" size={48} color="#d1d5db" />
-                <Text className="text-gray-500 text-center mt-3">
+                <Text className="text-text-muted text-center mt-3">
                   No entries yet. Start tracking your daily mood and symptoms!
                 </Text>
               </View>
@@ -254,7 +258,7 @@ const TrackerScreen = ({ navigation }) => {
                       </Text>
                       <View className="flex-1">
                         <View className="flex-row items-center mb-1">
-                          <Text className="text-gray-800 font-medium">
+                          <Text className="text-text-primary font-medium">
                             {formatDate(entry.date)}
                           </Text>
                           <View
@@ -264,7 +268,7 @@ const TrackerScreen = ({ navigation }) => {
                             }}
                           />
                         </View>
-                        <Text className="text-gray-600 text-sm">
+                        <Text className="text-text-darkGray text-sm">
                           {entry.mood}
                           {entry.symptoms && entry.symptoms.length > 0 && (
                             <Text> • {entry.symptoms.length} symptoms</Text>

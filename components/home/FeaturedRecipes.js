@@ -36,7 +36,7 @@ const FeaturedRecipes = ({ onPressRecipe, onPressSeeAll }) => {
     <View className="mt-lg">
       {/* Header */}
       <View className="flex-row justify-between items-center px-md mb-md">
-        <Text className="text-gray-800 text-xl font-semibold">
+        <Text className="text-text-primary text-xl font-semibold">
           Featured Recipes
         </Text>
         <TouchableOpacity
@@ -66,7 +66,7 @@ const FeaturedRecipes = ({ onPressRecipe, onPressSeeAll }) => {
               key={recipe.id}
               onPress={() => onPressRecipe(recipe)}
               activeOpacity={0.8}
-              className={`bg-white rounded-xl shadow-sm ${
+              className={`bg-surface-primary rounded-xl shadow-sm ${
                 index !== recipes.length - 1 ? "mr-md" : ""
               }`}
               style={{ width: 200, height: 200 }}
@@ -75,13 +75,13 @@ const FeaturedRecipes = ({ onPressRecipe, onPressSeeAll }) => {
               <View className="relative">
                 <Image
                   source={{ uri: recipe.image }}
-                  className="w-full h-32 rounded-t-xl bg-gray-200"
+                  className="w-full h-32 rounded-t-xl"
                   resizeMode="cover"
                 />
 
                 {/* Heart Icon */}
                 <TouchableOpacity
-                  className="absolute top-3 right-3 w-8 h-8 bg-white/80 rounded-full items-center justify-center"
+                  className="absolute top-3 right-3 w-8 h-8 bg-surface-primary/80 rounded-full items-center justify-center"
                   activeOpacity={0.7}
                 >
                   <Ionicons name="heart-outline" size={18} color="#9CA3AF" />
@@ -101,7 +101,7 @@ const FeaturedRecipes = ({ onPressRecipe, onPressSeeAll }) => {
               {/* Recipe Info */}
               <View className="p-4">
                 <Text
-                  className="text-gray-800 font-medium text-md mb-3"
+                  className="text-text-primary font-medium text-md mb-3"
                   numberOfLines={2}
                 >
                   {recipe.title}
@@ -111,7 +111,7 @@ const FeaturedRecipes = ({ onPressRecipe, onPressSeeAll }) => {
                   {/* Rating */}
                   <View className="flex-row items-center">
                     <Ionicons name="star" size={14} color="#FCD34D" />
-                    <Text className="text-gray-600 text-xs ml-1">
+                    <Text className="text-text-darkGray text-xs ml-1">
                       {recipe.rating}
                     </Text>
                   </View>
@@ -119,7 +119,7 @@ const FeaturedRecipes = ({ onPressRecipe, onPressSeeAll }) => {
                   {/* Time */}
                   <View className="flex-row items-center">
                     <Ionicons name="time-outline" size={14} color="#9CA3AF" />
-                    <Text className="text-gray-600 text-xs ml-1">
+                    <Text className="text-text-darkGray text-xs ml-1">
                       {recipe.total_time ? `${recipe.total_time}m` : ""}
                     </Text>
                   </View>

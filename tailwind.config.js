@@ -6,67 +6,92 @@ module.exports = {
     "./components/**/*.{js,jsx,ts,tsx}",
   ],
   presets: [require("nativewind/preset")],
-  darkMode: "class", 
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        // Main colors
-        primary: "#14b8a6",
-        secondary: "#6b7280",
+        // Brand colors
+        brand: {
+          primary: "#0d9488",
+          secondary: "#14b8a6",
+        },
 
-        // Text colors
+        // Text colors with dark mode variants
         text: {
           primary: "#111827",
           secondary: "#374151",
           muted: "#6b7280",
           placeholder: "#9ca3af",
           inverse: "#ffffff",
-          // Dark theme
-          "primary-dark": "#f3f4f6",
-          "secondary-dark": "#d1d5db",
-          "muted-dark": "#9ca3af",
-          "placeholder-dark": "#6b7280",
-          "inverse-dark": "#111827",
+          brand: "#0d9488",
+        },
+
+        // Dark mode text colors
+        "text-dark": {
+          primary: "#f3f4f6",
+          secondary: "#d1d5db",
+          muted: "#9ca3af",
+          placeholder: "#6b7280",
+          inverse: "#111827",
+          brand: "#14b8a6",
+        },
+
+        // Surface/Background colors
+        surface: {
+          primary: "#ffffff",
+          secondary: "#f9fafb",
+          tertiary: "#f3f4f6",
+          overlay: "rgba(0, 0, 0, 0.5)",
+        },
+
+        // Dark mode surface colors
+        "surface-dark": {
+          primary: "#18181b",
+          secondary: "#23272f",
+          tertiary: "#27272a",
+          overlay: "rgba(0, 0, 0, 0.7)",
         },
 
         // Border colors
         border: {
           light: "#f3f4f6",
           DEFAULT: "#e5e7eb",
-          dark: "#d1d5db",
-          // Dark theme
-          "light-dark": "#374151",
-          "DEFAULT-dark": "#4b5563",
-          "dark-dark": "#6b7280",
+          brand: "#0d9488",
+          focus: "#14b8a6",
+        },
+
+        // Dark mode border colors
+        "border-dark": {
+          light: "#374151",
+          DEFAULT: "#d1d5db",
+          brand: "#0d9488",
+          focus: "#14b8a6",
         },
 
         // Button colors
         button: {
           primary: "#14b8a6",
           secondary: "#f9fafb",
+          outline: "transparent",
           disabled: "#d1d5db",
-          // Dark theme
-          "primary-dark": "#0d9488",
-          "secondary-dark": "#1f2937",
-          "disabled-dark": "#374151",
         },
 
-        // Focus states
-        focus: {
-          ring: "#14b8a6",
-          border: "#14b8a6",
-          // Dark theme
-          "ring-dark": "#0d9488",
-          "border-dark": "#0d9488",
+        // Dark mode button colors
+        "button-dark": {
+          primary: "#0d9488",
+          secondary: "#1f2937",
+          outline: "transparent",
+          disabled: "#374151",
         },
 
-        // FODMAP levels
+        // FODMAP level colors (consistent across themes)
         fodmap: {
           low: "#10b981",
           moderate: "#f59e0b",
           high: "#ef4444",
         },
 
+        // Symptom severity colors
         symptom: {
           1: "#10b981",
           2: "#84cc16",
@@ -75,47 +100,52 @@ module.exports = {
           5: "#ef4444",
         },
 
-        // Surface colors
-        surface: {
-          primary: "#ffffff",
-          secondary: "#f9fafb",
-          tertiary: "#f3f4f6",
-          overlay: "rgba(0, 0, 0, 0.5)",
-          // Dark theme
-          "primary-dark": "#18181b",
-          "secondary-dark": "#23272f",
-          "tertiary-dark": "#27272a",
-          "overlay-dark": "rgba(0,0,0,0.7)",
-        },
-
         // Status colors
         success: {
           50: "#f0fdf4",
           500: "#10b981",
           DEFAULT: "#10b981",
-          // Dark theme
-          "50-dark": "#052e16",
-          "500-dark": "#22d3ee",
         },
         warning: {
           50: "#fffbeb",
           500: "#f59e0b",
           DEFAULT: "#f59e0b",
-          // Dark theme
-          "50-dark": "#78350f",
-          "500-dark": "#fde68a",
         },
         error: {
           50: "#fef2f2",
           500: "#ef4444",
           DEFAULT: "#ef4444",
-          // Dark theme
-          "50-dark": "#7f1d1d",
-          "500-dark": "#fca5a5",
+        },
+        info: {
+          50: "#eff6ff",
+          500: "#3b82f6",
+          DEFAULT: "#3b82f6",
+        },
+
+        // Dark mode status colors
+        "success-dark": {
+          50: "#052e16",
+          500: "#22d3ee",
+          DEFAULT: "#22d3ee",
+        },
+        "warning-dark": {
+          50: "#78350f",
+          500: "#fde68a",
+          DEFAULT: "#fde68a",
+        },
+        "error-dark": {
+          50: "#7f1d1d",
+          500: "#fca5a5",
+          DEFAULT: "#fca5a5",
+        },
+        "info-dark": {
+          50: "#1e3a8a",
+          500: "#93c5fd",
+          DEFAULT: "#93c5fd",
         },
       },
 
-      // Spacing
+      // Spacing scale
       spacing: {
         xs: "4px",
         sm: "8px",
@@ -134,7 +164,7 @@ module.exports = {
         focus: "0 0 0 3px rgba(20, 184, 166, 0.1)",
       },
 
-      // Border radius
+      // Border radius scale
       borderRadius: {
         xs: "4px",
         sm: "8px",
@@ -147,7 +177,7 @@ module.exports = {
   plugins: [
     function ({ addUtilities }) {
       const newUtilities = {
-        // Common component styles
+        // Card components
         ".card": {
           backgroundColor: "#ffffff",
           borderRadius: "16px",
@@ -174,6 +204,7 @@ module.exports = {
           elevation: 4,
         },
 
+        // Button components
         ".btn-primary": {
           backgroundColor: "#14b8a6",
           borderRadius: "12px",
@@ -203,6 +234,7 @@ module.exports = {
           opacity: 0.6,
         },
 
+        // Input components
         ".input": {
           borderWidth: "1px",
           borderColor: "#e5e7eb",
@@ -288,6 +320,14 @@ module.exports = {
           padding: 16,
         },
 
+        ".alert-info": {
+          backgroundColor: "#eff6ff",
+          borderColor: "#3b82f6",
+          borderWidth: "1px",
+          borderRadius: "12px",
+          padding: 16,
+        },
+
         // Layout helpers
         ".screen-padding": {
           paddingHorizontal: 16,
@@ -302,7 +342,7 @@ module.exports = {
           paddingTop: 44,
         },
 
-        // Dark mode variants for cards and buttons
+        // Dark mode variants
         ".dark\\:card": {
           backgroundColor: "#18181b",
           borderColor: "#23272f",
@@ -330,6 +370,26 @@ module.exports = {
           backgroundColor: "#23272f",
           color: "#f3f4f6",
           borderColor: "#374151",
+        },
+
+        ".dark\\:alert-success": {
+          backgroundColor: "#052e16",
+          borderColor: "#22d3ee",
+        },
+
+        ".dark\\:alert-warning": {
+          backgroundColor: "#78350f",
+          borderColor: "#fde68a",
+        },
+
+        ".dark\\:alert-error": {
+          backgroundColor: "#7f1d1d",
+          borderColor: "#fca5a5",
+        },
+
+        ".dark\\:alert-info": {
+          backgroundColor: "#1e3a8a",
+          borderColor: "#93c5fd",
         },
       };
 

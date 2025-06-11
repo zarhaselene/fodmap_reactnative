@@ -196,7 +196,7 @@ const DailyTrackerModal = ({ visible, onClose, userId, initialDate }) => {
       presentationStyle="formSheet"
       onRequestClose={onClose}
     >
-      <View className="flex-1 bg-white">
+      <View className="flex-1 bg-surface-primary">
         {/* Header */}
         <View className="bg-teal-500 px-4 pt-12 pb-4">
           <View className="flex-row items-center justify-between">
@@ -226,8 +226,8 @@ const DailyTrackerModal = ({ visible, onClose, userId, initialDate }) => {
 
         <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
           {/* Date Section */}
-          <View className="px-4 py-4 border-b border-gray-100">
-            <Text className="text-gray-700 font-medium mb-2">Date</Text>
+          <View className="px-4 py-4 border-b border-border-light">
+            <Text className="text-text-secondary font-medium mb-2">Date</Text>
             <View className="flex-row items-center justify-between">
               <View>
                 <Text className="text-gray-900 text-lg font-medium">
@@ -273,7 +273,9 @@ const DailyTrackerModal = ({ visible, onClose, userId, initialDate }) => {
                   key={mood.value}
                   onPress={() => handleMoodSelect(mood.value)}
                   className={`items-center p-3 rounded-xl ${
-                    selectedMood === mood.value ? "bg-orange-50" : "bg-gray-50"
+                    selectedMood === mood.value
+                      ? "bg-orange-50"
+                      : "bg-bg-secondary"
                   }`}
                   style={{ flex: 1, marginHorizontal: 2 }}
                 >
@@ -282,7 +284,7 @@ const DailyTrackerModal = ({ visible, onClose, userId, initialDate }) => {
                     className={`text-xs text-center ${
                       selectedMood === mood.value
                         ? "text-orange-700 font-medium"
-                        : "text-gray-600"
+                        : "text-text-darkGray"
                     }`}
                   >
                     {mood.label}
@@ -307,7 +309,7 @@ const DailyTrackerModal = ({ visible, onClose, userId, initialDate }) => {
             <Text className="text-gray-900 text-lg font-medium mb-2">
               Symptoms
             </Text>
-            <Text className="text-gray-600 text-sm mb-4">
+            <Text className="text-text-darkGray text-sm mb-4">
               Select any symptoms you're experiencing today.
             </Text>
             <View className="flex-row flex-wrap">
@@ -320,7 +322,7 @@ const DailyTrackerModal = ({ visible, onClose, userId, initialDate }) => {
                     className={`flex-row items-center px-3 py-4 rounded-md mr-2 mb-2 border ${
                       isSelected
                         ? "bg-red-50 border-red-200"
-                        : "bg-gray-50 border-gray-200"
+                        : "bg-bg-secondary border-border"
                     }`}
                     style={{
                       minWidth:
@@ -340,7 +342,7 @@ const DailyTrackerModal = ({ visible, onClose, userId, initialDate }) => {
                       className={`text-sm ${
                         isSelected
                           ? "text-gray-900 font-medium"
-                          : "text-gray-600"
+                          : "text-text-darkGray"
                       }`}
                     >
                       {symptom.label}
@@ -360,16 +362,17 @@ const DailyTrackerModal = ({ visible, onClose, userId, initialDate }) => {
               value={notes}
               onChangeText={setNotes}
               placeholder="Add any additional notes about your day..."
+              placeholderTextColor="#9CA3AF"
               multiline
               numberOfLines={4}
-              className="bg-gray-50 p-4 rounded-md text-gray-800 border border-gray-200"
+              className="bg-surface-secondary p-4 rounded-md text-text-primary border border-border"
               style={{ textAlignVertical: "top" }}
             />
           </View>
         </ScrollView>
 
         {/* Save Button */}
-        <View className="px-4 pb-7 pt-5 border-t border-gray-100">
+        <View className="px-4 pb-7 pt-5 border-t border-border-light">
           <TouchableOpacity
             onPress={handleSave}
             disabled={loading || !selectedMood}

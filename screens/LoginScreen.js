@@ -110,12 +110,12 @@ export default function LoginScreen({ navigation }) {
               </View>
 
               {/* Login Card */}
-              <View className="w-full max-w-sm bg-white rounded-3xl shadow-md p-8 border border-gray-100">
+              <View className="w-full max-w-sm bg-surface-primary rounded-3xl shadow-md p-8 border border-border-light">
                 <View className="items-center mb-6">
-                  <Text className="text-2xl font-bold text-[#1EA79E] mb-2">
+                  <Text className="text-2xl font-bold text-text-brand mb-2">
                     Welcome!
                   </Text>
-                  <Text className="text-base text-gray-500 text-center leading-5">
+                  <Text className="text-base text-text-muted text-center leading-5">
                     Log in to explore FODMAP-friendly recipes and meals
                   </Text>
                 </View>
@@ -123,11 +123,11 @@ export default function LoginScreen({ navigation }) {
                 {/* Input Fields */}
                 <View className="space-y-4 mb-6">
                   <View>
-                    <Text className="text-sm font-semibold text-gray-700 mb-2 ml-1">
+                    <Text className="text-sm font-semibold text-text-secondary mb-2 ml-1">
                       Email Address
                     </Text>
                     <TextInput
-                      className="border border-gray-200 bg-gray-50 w-full p-4 rounded-xl text-base text-gray-800 focus:border-emerald-400"
+                      className="border border-border bg-bg-secondary w-full p-4 rounded-xl text-base text-text-primary focus:border-border-brand"
                       placeholder="Enter your email"
                       autoCapitalize="none"
                       keyboardType="email-address"
@@ -139,11 +139,11 @@ export default function LoginScreen({ navigation }) {
                   </View>
 
                   <View>
-                    <Text className="text-sm font-semibold text-gray-700 mb-2 mt-2 ml-1">
+                    <Text className="text-sm font-semibold text-text-secondary mb-2 mt-2 ml-1">
                       Password
                     </Text>
                     <TextInput
-                      className="border border-gray-200 bg-gray-50 w-full p-4 rounded-xl text-base text-gray-800 focus:border-emerald-400"
+                      className="border border-border bg-bg-secondary w-full p-4 rounded-xl text-base text-text-primary focus:border-border-brand"
                       placeholder="Enter your password"
                       secureTextEntry
                       value={password}
@@ -157,31 +157,31 @@ export default function LoginScreen({ navigation }) {
                 {/* Login Button */}
                 <TouchableOpacity
                   className={`py-4 rounded-xl mb-4 shadow-lg ${
-                    loading ? "bg-[#4FD1BF]" : "bg-[#1EA79E]"
+                    loading ? "bg-brand-secondary" : "bg-brand-primary"
                   }`}
                   onPress={handleLogin}
                   disabled={loading}
                 >
-                  <Text className="text-white text-center font-bold text-lg ">
+                  <Text className="text-white text-center font-bold text-lg">
                     {loading ? "Signing In..." : "Sign In"}
                   </Text>
                 </TouchableOpacity>
 
                 {/* Divider */}
                 <View className="flex-row items-center my-6">
-                  <View className="flex-1 h-px bg-gray-200" />
-                  <Text className="mx-4 text-gray-400 text-sm font-medium">
+                  <View className="flex-1 h-px bg-border" />
+                  <Text className="mx-4 text-text-gray text-sm font-medium">
                     or
                   </Text>
-                  <View className="flex-1 h-px bg-gray-200" />
+                  <View className="flex-1 h-px bg-border" />
                 </View>
 
                 {/* Register Link */}
                 <TouchableOpacity
-                  className="border-2 border-[#1EA79E] py-3 rounded-xl"
+                  className="border-2 border-border-brand py-3 rounded-xl"
                   onPress={() => navigation.navigate("Register")}
                 >
-                  <Text className="text-[#1EA79E] text-center font-semibold text-base">
+                  <Text className="text-text-brand text-center font-semibold text-base">
                     Create New Account
                   </Text>
                 </TouchableOpacity>

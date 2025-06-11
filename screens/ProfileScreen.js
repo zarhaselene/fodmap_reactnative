@@ -6,7 +6,6 @@ import SectionHeader from "../components/shared/SectionHeader";
 import { getUserData, updateUserData } from "../services/getUserData";
 import { getUserSavedRecipesCount } from "../services/getUserSavedRecipesData";
 import { useAuth } from "../context/AuthContext";
-import SettingsScreen from "./SettingsScreen";
 import { supabase } from "../utils/supabase";
 import DailyTrackerModal from "../components/trackerScreen/DailyTrackerModal";
 
@@ -94,7 +93,7 @@ export default function ProfileScreen({ navigation }) {
     >
       <View className="flex-row items-center">
         <View
-          className={`w-12 h-12 rounded-sm flex items-center justify-center mr-3 ${iconBg}`}
+          className={`w-12 h-12 rounded-full flex items-center justify-center mr-3 ${iconBg}`}
         >
           <Ionicons name={iconName} size={25} color={iconColor} />
         </View>
@@ -122,10 +121,10 @@ export default function ProfileScreen({ navigation }) {
 
       <View className="flex-1 px-4 mt-8">
         {/* User Profile Card */}
-        <View className="bg-surface-primary rounded-xl p-6 shadow-card mb-8">
+        <View className="bg-surface-primary rounded-xl py-6 px-3 shadow-card mb-8">
           <View className="flex-row items-center">
-            <View className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mr-5 border-2 border-primary shadow-card-lg">
-              <Text className="text-4xl font-bold text-primary">
+            <View className="w-20 h-20 bg-border-brand/10 rounded-full flex items-center justify-center mr-5 border-2 border-border-brand shadow-card-lg">
+              <Text className="text-4xl font-bold text-text-brand">
                 {name ? name.charAt(0).toUpperCase() : ""}
               </Text>
             </View>
@@ -135,21 +134,21 @@ export default function ProfileScreen({ navigation }) {
                   <TextInput
                     value={newName}
                     onChangeText={setNewName}
-                    className="border border-primary rounded-lg px-4 py-2 text-xl font-semibold text-text-primary bg-surface-secondary w-full mb-3"
+                    className="border border-border-brand rounded-sm px-4 py-2 text-xl font-semibold text-text-primary bg-surface-secondary w-full mb-3"
                     placeholder="Enter your name"
                     autoFocus
                     maxLength={32}
                   />
-                  <View className="flex-row space-x-2">
+                  <View className="flex-row items-center gap-5">
                     <TouchableOpacity
                       onPress={handleSave}
-                      className="flex-1 px-3 py-2 bg-primary rounded-sm items-center"
+                      className="flex-1 py-2 bg-brand-primary rounded-sm items-center"
                     >
                       <Text className="text-white font-semibold">Save</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() => setEditModalVisible(false)}
-                      className="flex-1 px-3 py-2 bg-border-light rounded-sm items-center"
+                      className="flex-1 py-2 bg-border-light rounded-sm items-center"
                     >
                       <Text className="text-text-muted font-semibold">
                         Cancel
@@ -164,9 +163,9 @@ export default function ProfileScreen({ navigation }) {
                   </Text>
                   <TouchableOpacity
                     onPress={handleEdit}
-                    className="ml-3 px-3 py-1 bg-primary/10 rounded-sm"
+                    className="ml-3 px-3 py-1 bg-brand-primary/10 rounded-sm"
                   >
-                    <Text className="text-primary text-base font-semibold">
+                    <Text className="text-brand-primary text-base font-semibold">
                       Edit
                     </Text>
                   </TouchableOpacity>
@@ -193,27 +192,27 @@ export default function ProfileScreen({ navigation }) {
         <View className="mb-24">
           <SectionHeader title="Account" />
           <ActionItem
-            iconName="heart"
+            iconName="heart-outline"
             title="Saved Recipes"
             subtitle={`${savedRecipes} recipes`}
             onPress={() => navigation.navigate("SavedRecipes")}
-            iconBg="bg-gray-100"
-            iconColor="#6b7280"
+            iconBg="bg-pink-100"
+            iconColor="#ec4899"
           />
           <ActionItem
-            iconName="book"
+            iconName="book-outline"
             title="FODMAP Resources"
             subtitle="Guides & educational content"
             onPress={() => navigation.getParent()?.navigate("Resources")}
-            iconBg="bg-gray-100"
-            iconColor="#6b7280"
+            iconBg="bg-blue-100"
+            iconColor="#2563eb"
           />
           <ActionItem
-            iconName="settings"
+            iconName="settings-outline"
             title="Settings"
             subtitle="App preferences"
             onPress={() => navigation.navigate("Settings")}
-            iconBg="bg-gray-100"
+            iconBg="bg-gray-200"
             iconColor="#6b7280"
           />
         </View>
