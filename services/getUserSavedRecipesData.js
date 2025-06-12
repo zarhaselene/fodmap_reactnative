@@ -62,3 +62,21 @@ export async function toggleFavorite(userId, recipeId) {
     return { action: 'added', isSaved: true };
   }
 }
+
+// Get all saved recipes for a user with full recipe data
+export async function getSavedRecipes(userId) {
+  const { data, error } = await supabase
+    .from('user_saved_recipes')
+    .select(
+      `
+      recipe_id,
+      recipes (*)
+    `
+    )
+    .eq('user_id', userId);
+
+  if (error) throw error;
+
+  // Return just the recipe data
+  return data.map((item) => item.recipes);
+}

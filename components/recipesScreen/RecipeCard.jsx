@@ -6,7 +6,7 @@ import RecipeDetails from './recipeDetails/RecipeDetails';
 import StarRating from '../shared/StarRating';
 import FavoriteButton from './recipeDetails/FavoriteButton';
 
-export default function RecipeCard({ recipe, isGridView }) {
+export default function RecipeCard({ recipe, isGridView, onRecipeUnsaved }) {
   const actionSheetRef = useRef(null);
 
   // Function to render stars based on rating
@@ -69,7 +69,7 @@ export default function RecipeCard({ recipe, isGridView }) {
           </View>
         </View>
       </View>
-      <RecipeDetails ref={actionSheetRef} recipe={recipe} />
+      <RecipeDetails ref={actionSheetRef} recipe={recipe} onRecipeUnsaved={onRecipeUnsaved} />
     </TouchableOpacity>
   );
 }
