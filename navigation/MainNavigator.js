@@ -1,8 +1,8 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import HomeScreen from "../screens/HomeScreen";
 import RecipesScreen from "../screens/RecipesScreen";
@@ -12,7 +12,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import FODMAPResourcesScreen from "../screens/FODMAPResourcesScreen";
+// import FODMAPResourcesScreen from "../screens/FODMAPResourcesScreen";
 
 const HomeStack = createNativeStackNavigator();
 const RecipesStack = createNativeStackNavigator();
@@ -67,10 +67,10 @@ function TabNavigator() {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: true,
-        tabBarActiveTintColor: '#009688',
-        tabBarInactiveTintColor: '#90a4ae',
+        tabBarActiveTintColor: "#009688",
+        tabBarInactiveTintColor: "#90a4ae",
         tabBarStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: "#fff",
           paddingVertical: 8,
           height: 70,
         },
@@ -123,11 +123,11 @@ export default function MainNavigator() {
   return (
     <NavigationContainer>
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        {/* <RootStack.Screen name="Login" component={LoginScreen} />
-        <RootStack.Screen name="Register" component={RegisterScreen} /> */}
+        <RootStack.Screen name="Login" component={LoginScreen} />
+        <RootStack.Screen name="Register" component={RegisterScreen} />
         <RootStack.Screen name="Main" component={TabNavigator} />
         <RootStack.Screen name="Settings" component={SettingsScreen} />
-        <RootStack.Screen name="Resources" component={FODMAPResourcesScreen} />
+        {/* <RootStack.Screen name="Resources" component={FODMAPResourcesScreen} /> */}
       </RootStack.Navigator>
     </NavigationContainer>
   );
