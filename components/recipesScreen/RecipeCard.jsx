@@ -29,7 +29,7 @@ export default function RecipeCard({ recipe, isGridView, onRecipeUnsaved }) {
           />
           {/* FODMAP level grid view */}
           {isGridView && (
-            <Text className='absolute bottom-2 left-2 bg-fodmap-low text-green-50 px-2 py-1 rounded-lg font-semibold'>
+            <Text className='absolute bottom-2 left-2 uppercase bg-[#DCFCE7] text-[##16A34A] px-3 py-1 rounded font-bold text-sm'>
               {recipe.level}
             </Text>
           )}
@@ -46,7 +46,9 @@ export default function RecipeCard({ recipe, isGridView, onRecipeUnsaved }) {
             {/* FODMAP level list view */}
             {!isGridView && (
               <View>
-                <Text className='bg-fodmap-low text-green-50 px-2 py-1 rounded-lg font-semibold'>{recipe.level}</Text>
+                <Text className='uppercase bg-[#DCFCE7] text-[##16A34A] px-3 py-1 rounded font-bold text-sm'>
+                  {recipe.level}
+                </Text>
               </View>
             )}
           </View>
@@ -56,13 +58,13 @@ export default function RecipeCard({ recipe, isGridView, onRecipeUnsaved }) {
               <AntDesignIcon name='clockcircleo' size={14} />
               <Text>{recipe.total_time}m</Text>
             </View>
-            {/* Category  */}
-            <Text className='bg-cyan-100 text-cyan-900 px-2 py-1 rounded-lg'>{recipe.category}</Text>
           </View>
           {/* Dietary needs  */}
           <View className='flex-row flex-wrap gap-2'>
+            {/* Category  */}
+            <Text className='bg-cyan-100 text-cyan-900 px-2 py-1 rounded text-xs'>{recipe.category}</Text>
             {recipe.dietary_needs?.map((need, index) => (
-              <Text key={index} className='bg-blue-50 text-blue-900 px-2 py-1 rounded-lg'>
+              <Text key={index} className='bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs'>
                 {need}
               </Text>
             ))}
