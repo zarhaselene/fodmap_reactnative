@@ -14,7 +14,15 @@ export default function HomeScreen({ navigation }) {
     logout();
     navigation.replace("Login");
   };
+  // Handle recipe press
+  const handleRecipePress = (recipe) => {
+    console.log("Recipe pressed:", recipe);
+  };
 
+  // Handle see all press
+  const handleSeeAllPress = () => {
+    navigation.navigate("Recipes");
+  };
   return (
     <View className="flex-1">
       <Header
@@ -39,10 +47,8 @@ export default function HomeScreen({ navigation }) {
           onPressSymptoms={() => navigation.navigate("Tracker")}
         />
         <FeaturedRecipes
-          onPressRecipe={(recipe) =>
-            navigation.navigate("RecipeDetail", { recipe })
-          }
-          onPressSeeAll={() => navigation.navigate("AllRecipes")}
+          onPressRecipe={handleRecipePress}
+          onPressSeeAll={handleSeeAllPress}
         />
       </ScrollView>
     </View>
